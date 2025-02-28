@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body>
+    <form id="regist">
+        <h2>Register</h2>
+        <table>
+            <tr>
+                <td><label for="nama">Nama</label></td>
+                <td>:</td>
+                <td><input type="text" id="nama" name="nama" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td>:</td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="alamat">Alamat</label></td>
+                <td>:</td>
+                <td><input type="text" id="alamat" name="alamat" required></td>
+            </tr>
+            <tr>
+                <td><label for="tempatlahir">Tempat Lahir</label></td>
+                <td>:</td>
+                <td><input type="text" id="tempatlahir" name="tempatlahir" required></td>
+            </tr>
+            <tr>
+                <td><label for="tgllahir">Tanggal Lahir</label></td>
+                <td>:</td>
+                <td><input type="date" id="tgllahir" name="tgllahir" required></td>
+            </tr>
+            <tr>
+                <td><label for="pw">Password</label></td>
+                <td>:</td>
+                <td><input type="password" id="pw" name="pw" required></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Jenis Kelamin</label></td>
+                <td>:</td>
+                <td>
+                    <input type="radio" name="gender" value="Laki-laki" required> Laki-laki
+                    <input type="radio" name="gender" value="Perempuan"> Perempuan
+                </td>
+            </tr>
+        </table>
+        <input type="submit" name="submit" id="submit" value="Daftar">
+    </form>
+    <script src="script.js"></script>
+</body>
+<style>
+    td {
+        vertical-align: middle;
+    }
+
+    td label {
+        white-space: nowrap;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    form {
+        background-color: azure;
+        padding: 20px;
+        border-radius: 15px;
+        width: 400px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 4px;
+    }
+
+    input[type="text"] {
+        width: 99%;
+    }
+
+    input[type="email"] {
+        width: 99%;
+    }
+
+    input[type="password"] {
+        width: 99%;
+    }
+
+    input[type="date"] {
+        width: 100%;
+    }
+
+    input[type="submit"] {
+        font-weight: bold;
+        width: 100%;
+        padding: 10px;
+        background-color: green;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        font-size: large;
+    }
+
+    input,
+    select,
+    textarea {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        margin-left: 5%;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        margin: 0;
+        margin-top: 200px;
+    }
+</style>
+
+<script>
+    document.getElementById("regist").addEventListener("submit", function (event) {
+        let nama = document.getElementById("nama").value;
+        let email = document.getElementById("email").value;
+        let alamat = document.getElementById("alamat").value;
+        let tempatLahir = document.getElementById("tempatlahir").value;
+        let tglLahir = document.getElementById("tgllahir").value;
+        let password = document.getElementById("pw").value;
+        let gender = document.querySelector('input[name="gender"]:checked');
+
+        let regexNama = /^[a-zA-Z\s']+$/;
+        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let regexAlamat = /^[a-zA-Z0-9\s.,'-]+$/;
+        let regexTempatLahir = /^[a-zA-Z\s]+$/;
+        let regexPassword = /^.{6,}$/;
+
+        if (!regexNama.test(nama)) {
+            alert("Nama hanya boleh berisi huruf dan tanda petik satu (')");
+            event.preventDefault();
+            return;
+        }
+
+        if (!regexEmail.test(email)) {
+            alert("Masukkan email yang valid (contoh: user@example.com)");
+            event.preventDefault();
+            return;
+        }
+
+        if (!regexAlamat.test(alamat)) {
+            alert("Alamat hanya boleh berisi huruf, angka, spasi, titik, koma, dan tanda petik");
+            event.preventDefault();
+            return;
+        }
+
+        if (!regexTempatLahir.test(tempatLahir)) {
+            alert("Tempat lahir hanya boleh berisi huruf dan spasi");
+            event.preventDefault();
+            return;
+        }
+
+        if (tglLahir === "") {
+            alert("Tanggal lahir tidak boleh kosong");
+            event.preventDefault();
+            return;
+        }
+
+        if (!regexPassword.test(password)) {
+            alert("Password harus memiliki minimal 6 karakter");
+            event.preventDefault();
+            return;
+        }
+
+        if (!gender) {
+            alert("Silakan pilih jenis kelamin");
+            event.preventDefault();
+            return;
+        }
+
+        alert("Pendaftaran berhasil!");
+    });
+
+
+</script>
+
+</html>
