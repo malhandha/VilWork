@@ -1,11 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VilWork - Job Finder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Global Styles */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    /* Banner / Hero Section */
+    .banner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 90vh;
+      background: url("vilwork-banner.jpg") no-repeat center center;
+      background-size: 120%;
+      text-align: center;
+      color: white;
+      transition: background-size 0.5s ease, transform 0.5s ease;
+      padding: 20px;
+    }
+    .banner h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin: 0 0 20px;
+      max-width: 800px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .banner button {
+      padding: 12px 36px;
+      border-radius: 25px;
+      border: none;
+      background-color: #1e3a8a;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.5s ease, opacity 0.5s ease;
+    }
+    .banner button:hover {
+      background-color: #3b82f6;
+    }
+    /* Container Section */
+    .container {
+      background: #fff;
+      padding: 40px 10%;
+      margin: -50px auto 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+    }
+    h2 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+    .input {
+      margin-bottom: 20px;
+    }
+    .input label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .input input,
+    .input select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #3b82f6;
+    }
+    /* Job List */
+    .job-list {
+      margin-top: 20px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .job_item {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+    .job_item:last-child { border-bottom: none; }
+    .job_item h3 { margin: 0 0 5px; }
+    .job_item p { margin: 5px 0; }
+    .action { margin-top: 10px; }
+    .action button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .action .green { background-color: #28a745; color: #fff; }
+    .action .red { background-color: #dc3545; color: #fff; }
+    /* Notifikasi */
+    #notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s;
+      z-index: 1000;
+    }
+    #notification.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
 </head>
 <body>
-    
+  <!-- Notifikasi -->
+  <div id="notification"></div>
+
+  <!-- Banner -->
+  <header id="banner" class="banner">
+    <h1 id="h1">Temukan Pekerjaan Impian Anda dengan VilWork</h1>
+    <button id="button">Cari Pekerjaan</button>
+  </header>
+
+  <!-- Form Tambah Lowongan -->
+  <section class="container">
+    <h2>Tambah Lowongan Pekerjaan</h2>
+    <form id="jobForm">
+      <div class="input">
+        <label for="jobTitle">Nama Kerjaan</label>
+        <input type="text" id="jobTitle" required />
+      </div>
+      <div class="input">
+        <label for="jobCompany">Perusahaan</label>
+        <input type="text" id="jobCompany" required />
+      </div>
+      <div class="input">
+        <label for="jobLocation">Lokasi</label>
+        <input type="text" id="jobLocation" required />
+      </div>
+      <div class="input">
+        <label for="jobCategory">Kategori</label>
+        <input type="text" id="jobCategory" required />
+      </div>
+      <div class="input">
+        <label for="jobIsAvailable">Bismilah ini rill saya nambahin kerjaan</label>
+        <input type="checkbox" id="jobIsAvailable" />
+      </div>
+      <button type="submit">Tambahkan Lowongan</button>
+    </form>
+  </section>
+
+  <!-- Form Cari Lowongan -->
+  <section class="container">
+    <h2>Cari Lowongan</h2>
+    <form id="searchJobForm">
+      <div class="input">
+        <label for="searchJobLocation">Cari berdasarkan Lokasi</label>
+        <input type="text" id="searchJobLocation" />
+      </div>
+      <button type="submit">Cari</button>
+    </form>
+  </section>
+
+  <section class="container">
+    <h2>Daftar Pekerjaan</h2>
+    <div id="availableJobsList">
+      <h3>Lowongan Tersedia</h3>
+    </div>
+    <div id="unavailableJobsList">
+      <h3>Lowongan Tidak Tersedia</h3>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const jobForm = document.getElementById("jobForm");
+      const searchJobForm = document.getElementById("searchJobForm");
+      const availableJobsList = document.getElementById("availableJobsList");
+      const unavailableJobsList = document.getElementById("unavailableJobsList");
+      const notification = document.getElementById("notification");
+      const banner = document.getElementById("banner");
+      const h1 = document.getElementById("h1");
+      const button = document.getElementById("button");
+
+      //Inisialisasi
+      let jobs = JSON.parse(localStorage.getItem("jobs") || "[]");
+      renderJobs();
+
+      function showNotification(message, duration = 3000) {
+        notification.textContent = message;
+        notification.classList.add("show");
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, duration);
+      }
+
+      function updateLocalStorage() {
+        localStorage.setItem("jobs", JSON.stringify(jobs));
+      }
+
+      jobForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const jobID = Date.now().toString();
+        const title = document.getElementById("jobTitle").value;
+        const company = document.getElementById("jobCompany").value;
+        const location = document.getElementById("jobLocation").value;
+        const category = document.getElementById("jobCategory").value;
+        const isAvailable = document.getElementById("jobIsAvailable").checked;
+        const job = { id: jobID, title, company, location, category, isAvailable };
+        jobs.push(job);
+        updateLocalStorage();
+        renderJobs();
+        jobForm.reset();
+        showNotification("Lowongan pekerjaan berhasil ditambahkan!");
+      });
+
+      searchJobForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const searchLocation = document.getElementById("searchJobLocation").value.toLowerCase();
+        const filteredJobs = jobs.filter(job => job.location.toLowerCase().includes(searchLocation));
+        renderJobs(filteredJobs);
+        showNotification("Pencarian lowongan selesai nih.");
+      });
+      function toggleJobStatus(jobID) {
+        const jobIndex = jobs.findIndex(job => job.id === jobID);
+        if (jobIndex !== -1) {
+          jobs[jobIndex].isAvailable = !jobs[jobIndex].isAvailable;
+          updateLocalStorage();
+          renderJobs();
+          showNotification("Status lowongan berhasil diubah!");
+        }
+      }
+      function deleteJob(jobID) {
+        jobs = jobs.filter(job => job.id !== jobID);
+        updateLocalStorage();
+        renderJobs();
+        showNotification("Lowongan pekerjaan berhasil dilupakan!");
+      }
+      function createJobElement(job) {
+        const jobItem = document.createElement("article");
+        jobItem.classList.add("job_item");
+        jobItem.setAttribute("data-id", job.id);
+        jobItem.innerHTML = `
+          <h3>${job.title}</h3>
+          <p><strong>Perusahaan:</strong> ${job.company}</p>
+          <p><strong>Lokasi:</strong> ${job.location}</p>
+          <p><strong>Kategori:</strong> ${job.category}</p>
+          <div class="action">
+            <button class="green">${job.isAvailable ? "Minat Banget Saya Mah" : "Gajadi Minat Deh"}</button>
+            <button class="red">Lupakan Lowongan Ini</button>
+          </div>
+        `;
+        const buttons = jobItem.querySelectorAll("button");
+        buttons[0].addEventListener("click", () => toggleJobStatus(job.id));
+        buttons[1].addEventListener("click", () => deleteJob(job.id));
+        return jobItem;
+      }
+
+      function renderJobs(filteredJobs = jobs) {
+        availableJobsList.innerHTML = "<h3>Lowongan Tersedia</h3>";
+        unavailableJobsList.innerHTML = "<h3>Lowongan yang Saya Minati</h3>";
+        const availableFragment = document.createDocumentFragment();
+        const unavailableFragment = document.createDocumentFragment();
+        filteredJobs.forEach(job => {
+          const jobElement = createJobElement(job);
+          if (job.isAvailable) {
+            availableFragment.appendChild(jobElement);
+          } else {
+            unavailableFragment.appendChild(jobElement);
+          }
+        });
+        availableJobsList.appendChild(availableFragment);
+        unavailableJobsList.appendChild(unavailableFragment);
+      }
+
+      window.addEventListener("scroll", function () {
+        const scrollPos = window.scrollY;
+        if (scrollPos > 150) {
+          banner.style.backgroundSize = "100%";
+          h1.style.opacity = "0";
+          h1.style.transform = "translateY(-50px) scale(0.8)";
+          button.style.opacity = "0";
+          button.style.transform = "translateY(-50px) scale(0.8)";
+        } else {
+          banner.style.backgroundSize = "120%";
+          h1.style.opacity = "1";
+          h1.style.transform = "translateY(0) scale(1)";
+          button.style.opacity = "1";
+          button.style.transform = "translateY(0) scale(1)";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
