@@ -1,120 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charity</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        body {
-            background-color: #D5EFE4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            background: #F6FAF9;
-            padding: 30px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .judul h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .inputbox {
-            margin-bottom: 15px;
-        }
-        .inputbox span {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-        .inputbox input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-.qris_input{
-    text-align: center;
-}
-        .custom-dropdown {
-            position: relative;
-            width: 100%;
-            padding: 10px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .dropdown-options {
-            display: none;
-            position: absolute;
-            width: 100%;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 5px;
-            list-style: none;
-            padding: 0;
-            z-index: 10;
-        }
-        .dropdown-options li {
-            padding: 10px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .dropdown-options li:hover {
-            background: #f0f0f0;
-        }
-        .hidden {
-            display: none;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 10px;
-            background: #28a745;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .submit-btn:hover {
-            background: #218838;
-        }
-    </style>
 </head>
+
 <body>
     <div class="container">
-        <form>
+        <form id="validate">
             <div class="judul">
                 <h2>Charity</h2>
             </div>
             <div class="inputbox">
                 <span>Nama Lengkap :</span>
-                <input type="text" placeholder="Nama Anda">
+                <input type="text" id="nama_lengkap" placeholder="Nama Anda">
             </div>
             <div class="inputbox">
                 <span>Email :</span>
-                <input type="text" placeholder="Email Anda">
+                <input type="text" id="email" placeholder="Email Anda">
             </div>
             <div class="inputbox">
                 <span>Nomor Telepon :</span>
@@ -122,7 +31,7 @@
             </div>
             <div class="inputbox">
                 <span>Nominal Donasi :</span>
-                <input type="text" placeholder="Nominal Donasi">
+                <input type="text" id="nominal_donasi" placeholder="Nominal Donasi">
             </div>
             <div class="custom-dropdown">Pilih Metode</div>
             <ul class="dropdown-options">
@@ -147,7 +56,7 @@
             </div>
             <div id="va_input" class="hidden">
                 <span>Virtual Account :</span>
-                <input type="text" id="va_number" >
+                <input type="text" id="va_number">
             </div>
             <div id="qris_input" class="hidden">
                 <span>QRIS Code :</span><br>
@@ -159,28 +68,33 @@
             </div>
             <button type="submit" class="submit-btn">Bayar</button>
         </form>
+        <div id="notification" class="hidden"></div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let dropdown = document.querySelector(".custom-dropdown");
             let options = document.querySelector(".dropdown-options");
-    
+
             dropdown.addEventListener("click", function () {
-                options.style.display = options.style.display === "block" ? "none" : "block";
+                options.style.display = (options.style.display === "block") ? "none" : "block";
             });
-    
+
             document.querySelectorAll(".dropdown-options li").forEach(item => {
                 item.addEventListener("click", function () {
                     let metode = this.dataset.value;
                     dropdown.innerHTML = this.innerHTML;
                     document.querySelector("#metode").value = metode;
                     options.style.display = "none";
-                    document.querySelectorAll(".hidden").forEach(el => el.classList.add("hidden"));
+
+                    document.querySelectorAll("#bank_dropdown, #va_input, #qris_input, #ewallet_input")
+                        .forEach(el => el.classList.add("hidden"));
+
                     if (metode === "tfbank") {
                         document.getElementById("bank_dropdown").classList.remove("hidden");
-                        
                     } else if (metode === "va") {
                         document.getElementById("bank_dropdown").classList.remove("hidden");
+                        document.getElementById("va_input").classList.remove("hidden");
                     } else if (metode === "qris") {
                         document.getElementById("qris_input").classList.remove("hidden");
                     } else if (metode === "ewallet") {
@@ -188,21 +102,128 @@
                     }
                 });
             });
-    
+
             document.querySelector("form").addEventListener("submit", function (event) {
-                let valid = true;
-                document.querySelectorAll(".inputbox input, select").forEach(input => {
+                for (const input of document.querySelectorAll(".inputbox input, select")) {
                     if (input.value.trim() === "") {
-                        alert(`Mohon isi ${input.previousElementSibling ? input.previousElementSibling.textContent : input.getAttribute("placeholder")} field.`);
-                        valid = false;
+                        alert(`Mohon isi ${input.previousElementSibling
+                            ? input.previousElementSibling.textContent
+                            : input.getAttribute("placeholder")} field.`);
+                        event.preventDefault();
+                        break;
                     }
-                });
-                if (!valid) {
-                    event.preventDefault();
                 }
             });
         });
     </script>
-    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        body {
+            background-color: #D5EFE4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: #F6FAF9;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .judul h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .inputbox {
+            margin-bottom: 15px;
+        }
+
+        .inputbox span {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .inputbox input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .qris_input {
+            text-align: center;
+        }
+
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .dropdown-options {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+            list-style: none;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .dropdown-options li {
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .dropdown-options li:hover {
+            background: #f0f0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #218838;
+        }
+    </style>
 </body>
+
 </html>
