@@ -97,7 +97,7 @@
                         document.getElementById("bank_dropdown").classList.remove("hidden");
                     } else if (metode === "va") {
                         document.getElementById("bank_dropdown").classList.remove("hidden");
-                        document.getElementById("va_input").classList.remove("hidden");
+                        
                     } else if (metode === "qris") {
                         document.getElementById("qris_input").classList.remove("hidden");
                     } else if (metode === "ewallet") {
@@ -105,6 +105,8 @@
                     }
                 });
             });
+
+            
 
             document.querySelector("form").addEventListener("submit", function (event) {
                 for (const input of document.querySelectorAll(".inputbox input, select")) {
@@ -135,6 +137,7 @@
 
         body {
             background-color: #D5EFE4;
+            background:url(vilwork-banner.jpg);
             display: flex;
             justify-content: center;
             align-items: center;
