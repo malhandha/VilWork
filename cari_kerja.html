@@ -149,25 +149,22 @@
     <h2>Tambah Lowongan Pekerjaan</h2>
     <form id="jobForm">
       <div class="input">
-        <label for="jobTitle">Nama Kerjaan</label>
-        <input type="text" id="jobTitle" required>
+        <label for="namaKerjaan">Nama Pekerjaan</label>
+        <input type="text" id="namaKerjaan" required>
       </div>
       <div class="input">
-        <label for="jobCompany">Perusahaan</label>
-        <input type="text" id="jobCompany" required>
+        <label for="namaPerusahaan">Perusahaan</label>
+        <input type="text" id="namaPerusahaan" required>
       </div>
       <div class="input">
-        <label for="jobLocation">Lokasi</label>
-        <input type="text" id="jobLocation" required>
+        <label for="lokasiKerjaan">Lokasi</label>
+        <input type="text" id="lokasiKerjaan" required>
       </div>
       <div class="input">
-        <label for="jobCategory">Kategori</label>
-        <input type="text" id="jobCategory" required>
+        <label for="kategoriKerjaan">Kategori</label>
+        <input type="text" id="kategoriKerjaan" required>
       </div>
-      <div class="input">
-        <label for="jobIsAvailable">Bismillah Niat Nambahin Kerjaan</label>
-        <input type="checkbox" id="jobIsAvailable">
-      </div>
+
       <button type="submit">Tambahkan Lowongan</button>
     </form>
   </section>
@@ -176,8 +173,8 @@
     <h2>Cari Lowongan</h2>
     <form id="searchJobForm">
       <div class="input">
-        <label for="searchJobLocation">Cari berdasarkan Lokasi</label>
-        <input type="text" id="searchJobLocation">
+        <label for="cariLokasiKerjaan">Cari berdasarkan Lokasi</label>
+        <input type="text" id="cariLokasiKerjaan">
       </div>
       <button type="submit">Cari</button>
     </form>
@@ -185,10 +182,13 @@
 
   <section class="container">
     <h2>Daftar Pekerjaan</h2>
-    <div id="availableJobsList">
-      <h3>Lowongan Tersedia</h3>
+    <div id="lisKerjaanPas">
+      <h3>Lowongan Pada Kota Yang Kamu Cari</h3>
     </div>
-    <div id="favoriteJobsList">
+    <div id="lisKerjaanGaPas">
+      <h3>Semua Lowongan Yang Tersedia</h3>
+    </div>
+    <div id="kerjaanFavorite">
       <h3>Lowongan Favorite</h3>
     </div>
   </section>
@@ -197,8 +197,9 @@
     document.addEventListener("DOMContentLoaded", function () {
       const jobForm = document.getElementById("jobForm");
       const searchJobForm = document.getElementById("searchJobForm");
-      const availableJobsList = document.getElementById("availableJobsList");
-      const favoriteJobsList = document.getElementById("favoriteJobsList");
+      const lisKerjaanPas = document.getElementById("lisKerjaanPas");
+      const lisKerjaanGaPas = document.getElementById("lisKerjaanGaPas");
+      const kerjaanFavorite = document.getElementById("kerjaanFavorite");
       const notification = document.getElementById("notification");
       const banner = document.getElementById("banner");
       const h1 = document.getElementById("h1");
@@ -206,103 +207,115 @@
       const searchSection = document.getElementById("searchSection");
 
       let jobs = JSON.parse(localStorage.getItem("jobs") || "[]");
-      renderJobs();
+      tampilkanKerja();
 
-      function showNotification(message, duration = 3000) {
-        notification.textContent = message;
+      function tampilkanNotifikasi(pesan, durasi = 3000) {
+        notification.textContent = pesan;
         notification.classList.add("show");
         setTimeout(() => {
           notification.classList.remove("show");
-        }, duration);
+        }, durasi);
       }
 
-      function updateLocalStorage() {
+      function perbaruiLocalStorage() {
         localStorage.setItem("jobs", JSON.stringify(jobs));
       }
 
       jobForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const jobID = Date.now().toString();
-        const title = document.getElementById("jobTitle").value;
-        const company = document.getElementById("jobCompany").value;
-        const location = document.getElementById("jobLocation").value;
-        const category = document.getElementById("jobCategory").value;
-        const isAvailable = document.getElementById("jobIsAvailable").checked;
-        const job = { id: jobID, title, company, location, category, isAvailable };
+        const nama = document.getElementById("namaKerjaan").value;
+        const perusahaan = document.getElementById("namaPerusahaan").value;
+        const lokasi = document.getElementById("lokasiKerjaan").value;
+        const kategori = document.getElementById("kategoriKerjaan").value;
+        const job = { id: jobID, nama, perusahaan, lokasi, kategori, favorite: false };
         jobs.push(job);
-        updateLocalStorage();
-        renderJobs();
+        perbaruiLocalStorage();
+        tampilkanKerja();
         jobForm.reset();
-        showNotification("Lowongan pekerjaan berhasil ditambahkan!");
+        tampilkanNotifikasi("Lowongan pekerjaan berhasil ditambahkan!");
       });
 
       searchJobForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        const searchLocation = document.getElementById("searchJobLocation").value.toLowerCase();
-        const filteredJobs = jobs.filter(job => job.location.toLowerCase().includes(searchLocation));
-        renderJobs(filteredJobs);
-        showNotification("Pencarian lowongan selesai.");
+
+        const cariLokasi = document.getElementById("cariLokasiKerjaan").value.toLowerCase().trim();
+        tampilkanKerja(cariLokasi);
+        tampilkanNotifikasi("Pencarian lowongan selesai.");
       });
 
-      function toggleJobStatus(jobID) {
-        const jobIndex = jobs.findIndex(job => job.id === jobID);
-        if (jobIndex !== -1) {
-          jobs[jobIndex].isAvailable = !jobs[jobIndex].isAvailable;
-          updateLocalStorage();
-          renderJobs();
-          showNotification("Status lowongan berhasil diubah!");
+      function ubahStatusFavorit(jobID) {
+        const indeksJob = jobs.findIndex(job => job.id === jobID);
+        if (indeksJob !== -1) {
+          jobs[indeksJob].favorite = !jobs[indeksJob].favorite;
+          perbaruiLocalStorage();
+          tampilkanKerja();
+          tampilkanNotifikasi("Status favorite lowongan berhasil diubah!");
         }
       }
 
-      function deleteJob(jobID) {
+      function hapusKerjaan(jobID) {
         jobs = jobs.filter(job => job.id !== jobID);
-        updateLocalStorage();
-        renderJobs();
-        showNotification("Lowongan pekerjaan berhasil dihapus!");
+        perbaruiLocalStorage();
+        tampilkanKerja();
+        tampilkanNotifikasi("Lowongan pekerjaan berhasil dihapus!");
       }
 
-      function createJobElement(job) {
+      function buatElemenKerjaan(job) {
         const jobItem = document.createElement("article");
         jobItem.classList.add("job_item");
         jobItem.setAttribute("data-id", job.id);
         jobItem.innerHTML = `
-          <h3>${job.title}</h3>
-          <p><strong>Perusahaan:</strong> ${job.company}</p>
-          <p><strong>Lokasi:</strong> ${job.location}</p>
-          <p><strong>Kategori:</strong> ${job.category}</p>
+          <h3>${job.nama}</h3>
+          <p><strong>Perusahaan:</strong> ${job.perusahaan}</p>
+          <p><strong>Lokasi:</strong> ${job.lokasi}</p>
+          <p><strong>Kategori:</strong> ${job.kategori}</p>
           <div class="action">
-            <button class="green">${job.isAvailable ? "Minat Banget Saya" : "Gajadi Minat"}</button>
-            <button class="red">Lupakan Lowongan Ini</button>
+            <button class="green">${job.favorite ? "Unfavorite" : "Favorite"}</button>
+            <button class="red">Hapus</button>
           </div>
         `;
-        const buttons = jobItem.querySelectorAll("button");
-        buttons[0].addEventListener("click", () => toggleJobStatus(job.id));
-        buttons[1].addEventListener("click", () => deleteJob(job.id));
+        const tombol = jobItem.querySelectorAll("button");
+        tombol[0].addEventListener("click", () => ubahStatusFavorit(job.id));
+        tombol[1].addEventListener("click", () => hapusKerjaan(job.id));
         return jobItem;
       }
 
-      function renderJobs(filteredJobs = jobs) {
-        availableJobsList.innerHTML = "<h3>Lowongan Tersedia</h3>";
-        favoriteJobsList.innerHTML = "<h3>Lowongan Favorite Aing</h3>";
-        const availableFragment = document.createDocumentFragment();
-        const favoriteFragment = document.createDocumentFragment();
-        let availableCount = 0;
-        filteredJobs.forEach(job => {
-          const jobElement = createJobElement(job);
-          if (job.isAvailable) {
-            availableFragment.appendChild(jobElement);
-            availableCount++;
+      function tampilkanKerja(kataCari = "") {
+        lisKerjaanPas.innerHTML = "<h3>Lowongan Sesuai</h3>";
+        lisKerjaanGaPas.innerHTML = "<h3>Lowongan Tidak Sesuai</h3>";
+        kerjaanFavorite.innerHTML = "<h3>Lowongan Favorite</h3>";
+
+        const fragmenCocok = document.createDocumentFragment();
+        const fragmenTidakCocok = document.createDocumentFragment();
+        const fragmenFavorit = document.createDocumentFragment();
+        let hitungCocok = 0;
+
+        jobs.forEach(job => {
+          const elemenJob = buatElemenKerjaan(job);
+          if (kataCari && job.lokasi.toLowerCase().includes(kataCari)) {
+            fragmenCocok.appendChild(elemenJob);
+            hitungCocok++;
+          } else if (kataCari) {
+            fragmenTidakCocok.appendChild(elemenJob);
           } else {
-            favoriteFragment.appendChild(jobElement);
+            fragmenTidakCocok.appendChild(elemenJob);
+          }
+
+          if (job.favorite) {
+            fragmenFavorit.appendChild(elemenJob.cloneNode(true));
           }
         });
-        if (availableCount === 0) {
-          const noJobMsg = document.createElement("p");
-          noJobMsg.textContent = "Maaf, kerjaan di kota itu belum ada yaw.";
-          availableFragment.appendChild(noJobMsg);
+
+        if (kataCari && hitungCocok === 0) {
+          const pesanTidakAda = document.createElement("p");
+          pesanTidakAda.textContent = "Maaf, kerjaan di kota itu belum ada yaw.";
+          fragmenCocok.appendChild(pesanTidakAda);
         }
-        availableJobsList.appendChild(availableFragment);
-        favoriteJobsList.appendChild(favoriteFragment);
+
+        lisKerjaanPas.appendChild(fragmenCocok);
+        lisKerjaanGaPas.appendChild(fragmenTidakCocok);
+        kerjaanFavorite.appendChild(fragmenFavorit);
       }
 
       button.addEventListener("click", function () {
@@ -310,8 +323,8 @@
       });
 
       window.addEventListener("scroll", function () {
-        const scrollPos = window.scrollY;
-        if (scrollPos > 150) {
+        const posisiScroll = window.scrollY;
+        if (posisiScroll > 150) {
           banner.style.backgroundSize = "100%";
           h1.style.opacity = "0";
           h1.style.transform = "translateY(-50px) scale(0.8)";
