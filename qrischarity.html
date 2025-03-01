@@ -2,10 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <title>Charity</title>
+
+    <script>
+        $(document).ready(function() {
+            $('#metode').select2({
+                templateResult: function(option) {
+                    if (!option.id) { return option.text; }
+                    var icon = $(option.element).data('icon');
+                    return $('<span><i class="' + icon + '"></i> ' + option.text + '</span>');
+                },
+                templateSelection: function(option) {
+                    if (!option.id) { return option.text; }
+                    var icon = $(option.element).data('icon');
+                    return $('<span><i class="' + icon + '"></i> ' + option.text + '</span>');
+                }
+            });
+        });
+        </script>
 </head>
 <body>
+    <div class="metodebayar">
+        <span>Metode Pembayaran :</span>
+        <div class="custom-dropdown">
+            <div class="selected-option">Pilih Metode</div>
+            <ul class="dropdown-options">
+                <li data-value="tfbank"><i class='bx bxs-bank'></i> Transfer Bank</li>
+                <li data-value="va"><i class="ri-smartphone-line"></i> Virtual Account</li>
+                <li data-value="qris"><i class='bx bx-qr-scan'></i> QRIS</li>
+                <li data-value="ewallet"><i class='bx bx-wallet-alt'></i> E-Wallet</li>
+            </ul>
+        </div>
+        <input type="hidden" name="metode" id="metode">
+    </div>
     
+<style>
+    .custom-dropdown {
+    position: relative;
+    width: 250px;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.dropdown-options {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+.dropdown-options li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.dropdown-options li:hover {
+    background: #f0f0f0;
+}
+
+
+
+</style>
+<script>
+    document.querySelector(".custom-dropdown").addEventListener("click", function () {
+    this.querySelector(".dropdown-options").style.display = "block";
+});
+document.querySelectorAll(".dropdown-options li").forEach(item => {
+    item.addEventListener("click", function () {
+        document.querySelector(".selected-option").innerHTML = this.innerHTML;
+        document.querySelector("#metode").value = this.dataset.value;
+        document.querySelector(".dropdown-options").style.display = "none";
+    });
+});
+
+</script>
+    <div class="container">
+        <form action=""></form>
+        <div class="row"> 
+            <div class = "column">
+                <h3 class = "title">Charity</h3>
+                <div class="inputbox">
+                    <span>Nama Lengkap :</span>
+                    <input type="text" placeholder="Nama Anda">
+                </div>
+                <div class="inputbox">
+                    <span>Email :</span>
+                    <input type="text" placeholder="Email Anda">
+                </div>
+                <div class="inputbox">
+                    <span>Nomor Telepon :</span>
+                    <input type="text" placeholder="Telepon Anda"
+                </div>
+                <div class="inputbox">
+                    <span>Nominal Donasi :</span>
+                    <input type="text" placeholder="Nama Anda">
+                </div>
+                <div class="metodebayar">
+                    <span>Metode Pembayaran :</span>
+                    <select name="metode" id="metode">
+                        <option value="tfbank"><i class='bx bxs-bank'></i>Transfer Bank</option>
+                        <option value="va"><i class="ri-smartphone-line"></i>Virtual Account</option>
+                        <option value=""><i class='bx bx-qr-scan'></i>QRIS</option>
+                        <option value=""><i class='bx bx-wallet-alt'></i>E-Wallet</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
