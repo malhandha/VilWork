@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-=======
-  <meta charset="UTF-8" />
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
->>>>>>> 9eca2df087509188f23fe9396260d8233f920fcc
   <title>VilWork - Job Finder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +12,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Ubuntu', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #f5f7fa;
       color: #333;
     }
@@ -64,6 +57,7 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       max-width: 800px;
+      margin-bottom: 90px;
     }
     h2 {
       text-align: center;
@@ -122,10 +116,6 @@
     }
     .action .green { background-color: #28a745; color: #fff; }
     .action .red { background-color: #dc3545; color: #fff; }
-<<<<<<< HEAD
-=======
-   
->>>>>>> 9eca2df087509188f23fe9396260d8233f920fcc
     #notification {
       position: fixed;
       top: 20px;
@@ -147,10 +137,7 @@
   </style>
 </head>
 <body>
-<<<<<<< HEAD
 
-=======
->>>>>>> 9eca2df087509188f23fe9396260d8233f920fcc
   <div id="notification"></div>
 
   <header id="banner" class="banner">
@@ -162,7 +149,7 @@
     <h2>Tambah Lowongan Pekerjaan</h2>
     <form id="jobForm">
       <div class="input">
-        <label for="jobTitle">Nama Pekerjaan</label>
+        <label for="jobTitle">Nama Kerjaan</label>
         <input type="text" id="jobTitle" required>
       </div>
       <div class="input">
@@ -178,19 +165,14 @@
         <input type="text" id="jobCategory" required>
       </div>
       <div class="input">
-        <label for="jobIsAvailable">Lowongan Sesuai</label>
+        <label for="jobIsAvailable">Bismillah Niat Nambahin Kerjaan</label>
         <input type="checkbox" id="jobIsAvailable">
       </div>
       <button type="submit">Tambahkan Lowongan</button>
     </form>
   </section>
 
-<<<<<<< HEAD
-  <!-- Tambahkan ID pada section pencarian agar bisa dituju oleh tombol "Cari Pekerjaan" -->
   <section id="searchSection" class="container">
-=======
-  <section class="container">
->>>>>>> 9eca2df087509188f23fe9396260d8233f920fcc
     <h2>Cari Lowongan</h2>
     <form id="searchJobForm">
       <div class="input">
@@ -207,7 +189,7 @@
       <h3>Lowongan Tersedia</h3>
     </div>
     <div id="favoriteJobsList">
-      <h3>Lowongan Tidak Tersedia</h3>
+      <h3>Lowongan Favorite</h3>
     </div>
   </section>
 
@@ -301,7 +283,7 @@
 
       function renderJobs(filteredJobs = jobs) {
         availableJobsList.innerHTML = "<h3>Lowongan Tersedia</h3>";
-        favoriteJobsList.innerHTML = "<h3>Lowongan Tidak Tersedia</h3>";
+        favoriteJobsList.innerHTML = "<h3>Lowongan Favorite Aing</h3>";
         const availableFragment = document.createDocumentFragment();
         const favoriteFragment = document.createDocumentFragment();
         let availableCount = 0;
@@ -323,7 +305,6 @@
         favoriteJobsList.appendChild(favoriteFragment);
       }
 
-      // Jika tombol di banner diklik, scroll ke section pencarian
       button.addEventListener("click", function () {
         searchSection.scrollIntoView({ behavior: "smooth" });
       });
