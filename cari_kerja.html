@@ -221,6 +221,8 @@
         localStorage.setItem("jobs", JSON.stringify(jobs));
       }
 
+      const regexPenulisan = /^[a-zA-Z\s]+$/;
+
       jobForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const jobID = Date.now().toString();
@@ -228,6 +230,24 @@
         const perusahaan = document.getElementById("namaPerusahaan").value;
         const lokasi = document.getElementById("lokasiKerjaan").value;
         const kategori = document.getElementById("kategoriKerjaan").value;
+
+        if (!regexPenulisan.test(nama)) {
+          tampilkanNotifikasi("Nama Pekerjaan hanya boleh berisi huruf dan spasi!");
+          return;
+        }
+        if (!regexPenulisan.test(perusahaan)) {
+          tampilkanNotifikasi("Nama Perusahaan hanya boleh berisi huruf dan spasi!");
+          return;
+        }
+        if (!regexPenulisan.test(lokasi)) {
+          tampilkanNotifikasi("Lokasi hanya boleh berisi huruf dan spasi!");
+          return;
+        }
+        if (!regexPenulisan.test(kategori)) {
+          tampilkanNotifikasi("Kategori hanya boleh berisi huruf dan spasi!");
+          return;
+        }
+
         const job = { id: jobID, nama, perusahaan, lokasi, kategori, favorite: false };
         jobs.push(job);
         perbaruiLocalStorage();
@@ -240,6 +260,10 @@
         event.preventDefault();
 
         const cariLokasi = document.getElementById("cariLokasiKerjaan").value.toLowerCase().trim();
+        if (!regexPenulisan.test(cariLokasi)) {
+          tampilkanNotifikasi("Isikan nama kota aja yaw, jangan aneh2!");
+          return;
+        }
         tampilkanKerja(cariLokasi);
         tampilkanNotifikasi("Pencarian lowongan selesai.");
       });
@@ -283,7 +307,7 @@
 
       function tampilkanKerja(kataCari = "") {
         lisKerjaanPas.innerHTML = "<h3>Lowongan Sesuai</h3>";
-        lisKerjaanGaPas.innerHTML = "<h3>Lowongan Tidak Sesuai</h3>";
+        lisKerjaanGaPas.innerHTML = "<h3>Lowongan Lain Yang tersedia</h3>";
         kerjaanFavorite.innerHTML = "<h3>Lowongan Favorite</h3>";
 
         const fragmenCocok = document.createDocumentFragment();
