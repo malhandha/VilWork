@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -188,7 +187,7 @@
     <div id="availableJobsList">
       <h3>Lowongan Tersedia</h3>
     </div>
-    <div id="unavailableJobsList">
+    <div id="favoriteJobsList">
       <h3>Lowongan Tidak Tersedia</h3>
     </div>
   </section>
@@ -198,7 +197,7 @@
       const jobForm = document.getElementById("jobForm");
       const searchJobForm = document.getElementById("searchJobForm");
       const availableJobsList = document.getElementById("availableJobsList");
-      const unavailableJobsList = document.getElementById("unavailableJobsList");
+      const favoriteJobsList = document.getElementById("favoriteJobsList");
       const notification = document.getElementById("notification");
       const banner = document.getElementById("banner");
       const h1 = document.getElementById("h1");
@@ -282,19 +281,26 @@
 
       function renderJobs(filteredJobs = jobs) {
         availableJobsList.innerHTML = "<h3>Lowongan Tersedia</h3>";
-        unavailableJobsList.innerHTML = "<h3>Lowongan Tidak Tersedia</h3>";
+        favoriteJobsList.innerHTML = "<h3>Lowongan Tidak Tersedia</h3>";
         const availableFragment = document.createDocumentFragment();
-        const unavailableFragment = document.createDocumentFragment();
+        const favoriteFragment = document.createDocumentFragment();
+        let availableCount = 0;
         filteredJobs.forEach(job => {
           const jobElement = createJobElement(job);
           if (job.isAvailable) {
             availableFragment.appendChild(jobElement);
+            availableCount++;
           } else {
-            unavailableFragment.appendChild(jobElement);
+            favoriteFragment.appendChild(jobElement);
           }
         });
+        if (availableCount === 0) {
+          const noJobMsg = document.createElement("p");
+          noJobMsg.textContent = "Maaf, kerjaan di kota itu belum ada yaw.";
+          availableFragment.appendChild(noJobMsg);
+        }
         availableJobsList.appendChild(availableFragment);
-        unavailableJobsList.appendChild(unavailableFragment);
+        favoriteJobsList.appendChild(favoriteFragment);
       }
 
       window.addEventListener("scroll", function () {
