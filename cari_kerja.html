@@ -171,7 +171,8 @@
     </form>
   </section>
 
-  <section class="container">
+  <!-- Tambahkan ID pada section pencarian agar bisa dituju oleh tombol "Cari Pekerjaan" -->
+  <section id="searchSection" class="container">
     <h2>Cari Lowongan</h2>
     <form id="searchJobForm">
       <div class="input">
@@ -202,6 +203,7 @@
       const banner = document.getElementById("banner");
       const h1 = document.getElementById("h1");
       const button = document.getElementById("button");
+      const searchSection = document.getElementById("searchSection");
 
       let jobs = JSON.parse(localStorage.getItem("jobs") || "[]");
       renderJobs();
@@ -302,6 +304,11 @@
         availableJobsList.appendChild(availableFragment);
         favoriteJobsList.appendChild(favoriteFragment);
       }
+
+      // Jika tombol di banner diklik, scroll ke section pencarian
+      button.addEventListener("click", function () {
+        searchSection.scrollIntoView({ behavior: "smooth" });
+      });
 
       window.addEventListener("scroll", function () {
         const scrollPos = window.scrollY;
