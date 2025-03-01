@@ -3,209 +3,140 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
+    <title>Charity</title>
+    </head>
 
 <body>
-    <form id="regist">
-        <h2>Register</h2>
+    <form id="charity">
+        <h2>Charity</h2>
         <table>
             <tr>
                 <td><label for="nama">Nama</label></td>
                 <td>:</td>
-                <td><input type="text" id="nama" name="nama" required></td>
+                <td><input type="text" id="nama" placeholder="Nama Anda" name="nama" required></td>
             </tr>
             <tr>
                 <td><label for="email">Email</label></td>
                 <td>:</td>
-                <td><input type="email" id="email" name="email" required></td>
+                <td><input type="email" id="email" placeholder="Email Anda" name="email" required></td>
             </tr>
             <tr>
-                <td><label for="alamat">Alamat</label></td>
+                <td><label for="telp">Nomor Telepon</label></td>
                 <td>:</td>
-                <td><input type="text" id="alamat" name="alamat" required></td>
+                <td><input type="text" id="telp" placeholder="Nomor Telepon Anda" name="telp"></td>
             </tr>
             <tr>
-                <td><label for="tempatlahir">Tempat Lahir</label></td>
+                <td><label for="nominal">Jumlah Donasi</label></td>
                 <td>:</td>
-                <td><input type="text" id="tempatlahir" name="tempatlahir" required></td>
+                <td><input type="text" id="nominal" placeholder="Nominal Donasi" name="nominal"></td>
             </tr>
             <tr>
-                <td><label for="tgllahir">Tanggal Lahir</label></td>
-                <td>:</td>
-                <td><input type="date" id="tgllahir" name="tgllahir" required></td>
-            </tr>
-            <tr>
-                <td><label for="gender">Jenis Kelamin</label></td>
+                <td><label for="metode_bayar">Metode Pembayaran</label></td>
                 <td>:</td>
                 <td>
-                    <input type="radio" name="gender" value="Laki-laki" required> Laki-laki
-                    <input type="radio" name="gender" value="Perempuan"> Perempuan
+                    <input type="radio" name="metode_bayar" value="qris"> <i class='bx bx-qr-scan'></i> Qris <br>
+                    <input type="radio" name="metode_bayar" value="e-wallet"> <i class='bx bx-wallet-alt'></i> E-Wallet <br>
+                    <input type="radio" name="metode_bayar" value="bank"> <i class='bx bxs-bank'></i> Bank <br>
+                    <input type="radio" name="metode_bayar" value="va"> <i class='bx bx-dollar-circle'></i> Virtual Account
                 </td>
             </tr>
         </table>
         <input type="submit" name="submit" id="submit" value="Daftar">
     </form>
-    <script src="script.js"></script>
+
+    <style>
+        td {
+            vertical-align: middle;
+            padding: 4px;
+        }
+        td label {
+            white-space: nowrap;
+        }
+        form {
+            background-color: rgb(180, 242, 242);
+            padding: 20px;
+            border-radius: 15px;
+            width: 400px;
+        }
+        table {
+            width: 100%;
+        }
+        input[type="text"], input[type="email"] {
+            width: 99%;
+        }
+        input[type="submit"] {
+            font-weight: bold;
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: large;
+        }
+        input, select, textarea {
+            font-family: 'Poppins', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+
+
+    <script>
+        document.getElementById("charity").addEventListener("submit", function (event) {
+            let nama = document.getElementById("nama").value;
+            let email = document.getElementById("email").value;
+            let telp = document.getElementById("telp").value;
+            let nominal = document.getElementById("nominal").value;
+            let metodeBayar = document.querySelector('input[name="metode_bayar"]:checked');
+
+            let regexNama = /^[a-zA-Z\s']+$/;
+            let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let regexNominal = /^[0-9]+([.,][0-9]+)*$/;
+            let regexTelp = /^[0-9+]+$/;
+
+            if (!regexNama.test(nama)) {
+                alert("Nama hanya boleh berisi huruf dan tanda petik satu (')");
+                event.preventDefault();
+                return;
+            }
+            if (!regexNominal.test(nominal)) {
+                alert("Nominal harus berupa angka");
+                event.preventDefault();
+                return;
+            }
+            if (!regexEmail.test(email)) {
+                alert("Masukkan email yang valid (contoh: user@example.com)");
+                event.preventDefault();
+                return;
+            }
+            if (!regexTelp.test(telp)) {
+                alert("Silakan masukkan nomor telepon yang benar");
+                event.preventDefault();
+                return;
+            }
+            if (!metodeBayar) {
+                alert("Silakan pilih metode pembayaran");
+                event.preventDefault();
+                return;
+            }
+            alert("Pendaftaran berhasil!");
+        });
+    </script>
 </body>
-<style>
-    td {
-        vertical-align: middle;
-    }
-
-    td label {
-        white-space: nowrap;
-    }
-
-    .form-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    form {
-        background-color: rgb(180, 242, 242);
-        padding: 20px;
-        border-radius: 15px;
-        width: 400px;
-    }
-
-    table {
-        width: 100%;
-    }
-
-    td {
-        padding: 4px;
-    }
-
-    input[type="text"] {
-        width: 99%;
-    }
-
-    input[type="email"] {
-        width: 99%;
-    }
-
-    input[type="password"] {
-        width: 99%;
-    }
-
-    input[type="date"] {
-        width: 100%;
-    }
-
-    input[type="submit"] {
-        font-weight: bold;
-        width: 100%;
-        padding: 10px;
-        background-color: green;
-        border-radius: 10px;
-        color: rgb(253, 252, 252);
-        cursor: pointer;
-        font-size: large;
-    }
-
-    input,
-    select,
-    textarea {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    h2 {
-        text-align: center;
-        margin-left: 5%;
-    }
-
-    body {
-        font-family: 'Ubuntu', sans-serif;
-        background-color: antiquewhite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        margin: 0;
-        margin-top: 200px;
-    }
-</style>
-
-<script>
-    document.getElementById("regist").addEventListener("submit", function (event) {
-        let nama = document.getElementById("nama").value;
-        let email = document.getElementById("email").value;
-        let alamat = document.getElementById("alamat").value;
-        let tempatLahir = document.getElementById("tempatlahir").value;
-        let tglLahir = document.getElementById("tgllahir").value;
-        let password = document.getElementById("pw").value;
-        let gender = document.querySelector('input[name="gender"]:checked');
-
-        let regexNama = /^[a-zA-Z\s']+$/;
-        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        let regexAlamat = /^[a-zA-Z0-9\s.,'-]+$/;
-        let regexTempatLahir = /^[a-zA-Z\s]+$/;
-
-
-        if (!regexNama.test(nama)) {
-            alert("Nama hanya boleh berisi huruf dan tanda petik satu (')");
-            event.preventDefault();
-            return;
-        }
-
-        if (!regexEmail.test(email)) {
-            alert("Masukkan email yang valid (contoh: user@example.com)");
-            event.preventDefault();
-            return;
-        }
-
-        if (!regexAlamat.test(alamat)) {
-            alert("Alamat hanya boleh berisi huruf, angka, spasi, titik, koma, dan tanda petik");
-            event.preventDefault();
-            return;
-        }
-
-        if (!regexTempatLahir.test(tempatLahir)) {
-            alert("Tempat lahir hanya boleh berisi huruf dan spasi");
-            event.preventDefault();
-            return;
-        }
-
-        if (tglLahir === "") {
-            alert("Tanggal lahir tidak boleh kosong");
-            event.preventDefault();
-            return;
-        }
-
-        if (!regexPassword.test(password)) {
-            alert("Password harus memiliki minimal 6 karakter");
-            event.preventDefault();
-            return;
-        }
-
-        if (!gender) {
-            alert("Silakan pilih jenis kelamin");
-            event.preventDefault();
-            return;
-        }
-
-        alert("Pendaftaran berhasil!");
-    });
-
-
-</script>
 
 </html>
