@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VilWork - Job Finder</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* Global Styles */
     * { box-sizing: border-box; }
@@ -17,7 +17,6 @@
       background-color: #f5f7fa;
       color: #333;
     }
-    /* Banner / Hero Section */
     .banner {
       display: flex;
       flex-direction: column;
@@ -52,7 +51,6 @@
     .banner button:hover {
       background-color: #3b82f6;
     }
-    /* Container Section */
     .container {
       background: #fff;
       padding: 40px 10%;
@@ -96,7 +94,6 @@
     button[type="submit"]:hover {
       background-color: #3b82f6;
     }
-    /* Job List */
     .job-list {
       margin-top: 20px;
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -119,7 +116,6 @@
     }
     .action .green { background-color: #28a745; color: #fff; }
     .action .red { background-color: #dc3545; color: #fff; }
-    /* Notifikasi */
     #notification {
       position: fixed;
       top: 20px;
@@ -141,50 +137,47 @@
   </style>
 </head>
 <body>
-  <!-- Notifikasi -->
+
   <div id="notification"></div>
 
-  <!-- Banner -->
   <header id="banner" class="banner">
     <h1 id="h1">Temukan Pekerjaan Impian Anda dengan VilWork</h1>
-    <button id="button">Cari Pekerjaan</button>
+    <button type="button" id="button">Cari Pekerjaan</button>
   </header>
 
-  <!-- Form Tambah Lowongan -->
   <section class="container">
     <h2>Tambah Lowongan Pekerjaan</h2>
     <form id="jobForm">
       <div class="input">
-        <label for="jobTitle">Nama Kerjaan</label>
-        <input type="text" id="jobTitle" required />
+        <label for="jobTitle">Nama Pekerjaan</label>
+        <input type="text" id="jobTitle" required>
       </div>
       <div class="input">
         <label for="jobCompany">Perusahaan</label>
-        <input type="text" id="jobCompany" required />
+        <input type="text" id="jobCompany" required>
       </div>
       <div class="input">
         <label for="jobLocation">Lokasi</label>
-        <input type="text" id="jobLocation" required />
+        <input type="text" id="jobLocation" required>
       </div>
       <div class="input">
         <label for="jobCategory">Kategori</label>
-        <input type="text" id="jobCategory" required />
+        <input type="text" id="jobCategory" required>
       </div>
       <div class="input">
-        <label for="jobIsAvailable">Bismilah ini rill saya nambahin kerjaan</label>
-        <input type="checkbox" id="jobIsAvailable" />
+        <label for="jobIsAvailable">Lowongan Sesuai</label>
+        <input type="checkbox" id="jobIsAvailable">
       </div>
       <button type="submit">Tambahkan Lowongan</button>
     </form>
   </section>
 
-  <!-- Form Cari Lowongan -->
   <section class="container">
     <h2>Cari Lowongan</h2>
     <form id="searchJobForm">
       <div class="input">
         <label for="searchJobLocation">Cari berdasarkan Lokasi</label>
-        <input type="text" id="searchJobLocation" />
+        <input type="text" id="searchJobLocation">
       </div>
       <button type="submit">Cari</button>
     </form>
@@ -211,7 +204,6 @@
       const h1 = document.getElementById("h1");
       const button = document.getElementById("button");
 
-      //Inisialisasi
       let jobs = JSON.parse(localStorage.getItem("jobs") || "[]");
       renderJobs();
 
@@ -248,8 +240,9 @@
         const searchLocation = document.getElementById("searchJobLocation").value.toLowerCase();
         const filteredJobs = jobs.filter(job => job.location.toLowerCase().includes(searchLocation));
         renderJobs(filteredJobs);
-        showNotification("Pencarian lowongan selesai nih.");
+        showNotification("Pencarian lowongan selesai.");
       });
+
       function toggleJobStatus(jobID) {
         const jobIndex = jobs.findIndex(job => job.id === jobID);
         if (jobIndex !== -1) {
@@ -259,12 +252,14 @@
           showNotification("Status lowongan berhasil diubah!");
         }
       }
+
       function deleteJob(jobID) {
         jobs = jobs.filter(job => job.id !== jobID);
         updateLocalStorage();
         renderJobs();
-        showNotification("Lowongan pekerjaan berhasil dilupakan!");
+        showNotification("Lowongan pekerjaan berhasil dihapus!");
       }
+
       function createJobElement(job) {
         const jobItem = document.createElement("article");
         jobItem.classList.add("job_item");
@@ -275,7 +270,7 @@
           <p><strong>Lokasi:</strong> ${job.location}</p>
           <p><strong>Kategori:</strong> ${job.category}</p>
           <div class="action">
-            <button class="green">${job.isAvailable ? "Minat Banget Saya Mah" : "Gajadi Minat Deh"}</button>
+            <button class="green">${job.isAvailable ? "Minat Banget Saya" : "Gajadi Minat"}</button>
             <button class="red">Lupakan Lowongan Ini</button>
           </div>
         `;
@@ -287,7 +282,7 @@
 
       function renderJobs(filteredJobs = jobs) {
         availableJobsList.innerHTML = "<h3>Lowongan Tersedia</h3>";
-        unavailableJobsList.innerHTML = "<h3>Lowongan yang Saya Minati</h3>";
+        unavailableJobsList.innerHTML = "<h3>Lowongan Tidak Tersedia</h3>";
         const availableFragment = document.createDocumentFragment();
         const unavailableFragment = document.createDocumentFragment();
         filteredJobs.forEach(job => {
