@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity</title>
+    </head>
+
+<body>
+    <form id="charity">
+        <h2>Charity</h2>
+        <table>
+            <tr>
+                <td><label for="nama">Nama</label></td>
+                <td>:</td>
+                <td><input type="text" id="nama" placeholder="Nama Anda" name="nama" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td>:</td>
+                <td><input type="email" id="email" placeholder="Email Anda" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="telp">Nomor Telepon</label></td>
+                <td>:</td>
+                <td><input type="text" id="telp" placeholder="Nomor Telepon Anda" name="telp"></td>
+            </tr>
+            <tr>
+                <td><label for="nominal">Jumlah Donasi</label></td>
+                <td>:</td>
+                <td><input type="text" id="nominal" placeholder="Nominal Donasi" name="nominal"></td>
+            </tr>
+            <tr>
+                <td><label for="metode_bayar">Metode Pembayaran</label></td>
+                <td>:</td>
+                <td>
+                    <input type="radio" name="metode_bayar" value="qris"> <i class='bx bx-qr-scan'></i> Qris <br>
+                    <input type="radio" name="metode_bayar" value="e-wallet"> <i class='bx bx-wallet-alt'></i> E-Wallet <br>
+                    <input type="radio" name="metode_bayar" value="bank"> <i class='bx bxs-bank'></i> Bank <br>
+                    <input type="radio" name="metode_bayar" value="va"> <i class='bx bx-dollar-circle'></i> Virtual Account
+                </td>
+            </tr>
+        </table>
+        <input type="submit" name="submit" id="submit" value="Daftar">
+    </form>
+
+    <style>
+        td {
+            vertical-align: middle;
+            padding: 4px;
+        }
+        td label {
+            white-space: nowrap;
+        }
+        form {
+            background-color: rgb(180, 242, 242);
+            padding: 20px;
+            border-radius: 15px;
+            width: 400px;
+        }
+        table {
+            width: 100%;
+        }
+        input[type="text"], input[type="email"] {
+            width: 99%;
+        }
+        input[type="submit"] {
+            font-weight: bold;
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: large;
+        }
+        input, select, textarea {
+            font-family: 'Poppins', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+
+
+    <script>
+        document.getElementById("charity").addEventListener("submit", function (event) {
+            let nama = document.getElementById("nama").value;
+            let email = document.getElementById("email").value;
+            let telp = document.getElementById("telp").value;
+            let nominal = document.getElementById("nominal").value;
+            let metodeBayar = document.querySelector('input[name="metode_bayar"]:checked');
+
+            let regexNama = /^[a-zA-Z\s']+$/;
+            let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let regexNominal = /^[0-9]+([.,][0-9]+)*$/;
+            let regexTelp = /^[0-9+]+$/;
+
+            if (!regexNama.test(nama)) {
+                alert("Nama hanya boleh berisi huruf dan tanda petik satu (')");
+                event.preventDefault();
+                return;
+            }
+            if (!regexNominal.test(nominal)) {
+                alert("Nominal harus berupa angka");
+                event.preventDefault();
+                return;
+            }
+            if (!regexEmail.test(email)) {
+                alert("Masukkan email yang valid (contoh: user@example.com)");
+                event.preventDefault();
+                return;
+            }
+            if (!regexTelp.test(telp)) {
+                alert("Silakan masukkan nomor telepon yang benar");
+                event.preventDefault();
+                return;
+            }
+            if (!metodeBayar) {
+                alert("Silakan pilih metode pembayaran");
+                event.preventDefault();
+                return;
+            }
+            alert("Pendaftaran berhasil!");
+        });
+    </script>
+</body>
+
+</html>
