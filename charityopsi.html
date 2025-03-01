@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charity</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="logowhite.png">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -33,6 +33,7 @@
                 <span>Nominal Donasi :</span>
                 <input type="text" id="nominal_donasi" placeholder="Nominal Donasi">
             </div>
+            <div class = dropdown-wrapper>
             <div class="custom-dropdown">Pilih Metode</div>
             <ul class="dropdown-options">
                 <li data-value="tfbank"><i class='bx bxs-bank'></i> Transfer Bank</li>
@@ -40,6 +41,8 @@
                 <li data-value="qris"><i class='bx bx-qr-scan'></i> QRIS</li>
                 <li data-value="ewallet"><i class='bx bx-wallet-alt'></i> E-Wallet</li>
             </ul>
+        </div>
+
             <input type="hidden" name="metode" id="metode">
             <div id="bank_dropdown" class="hidden">
                 <span>Pilih Bank :</span>
@@ -169,6 +172,10 @@
         .qris_input {
             text-align: center;
         }
+        .dropdown-wrapper {
+  position: relative;
+  display: 80%;
+}
 
         .custom-dropdown {
             position: relative;
@@ -185,6 +192,7 @@
             display: none;
             position: absolute;
             width: 100%;
+            left: 0;
             background: white;
             border: 1px solid #ccc;
             border-radius: 5px;
