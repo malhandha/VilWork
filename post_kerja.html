@@ -64,6 +64,18 @@
         .btn:hover {
             background: rgb(0, 201, 0);
         }
+        .custom-select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #4CAF50; 
+        border-radius: 8px; 
+        background-color: white;
+        font-size: 16px;
+        color: #0a0a0a;
+        cursor: pointer;
+        appearance: none; 
+        outline: none;
+    }
     </style>
 </head>
 <body>
@@ -93,11 +105,14 @@
                 <td><input type="date" name="tanggal_lahir" class="input-field"></td>
             </tr>
             <tr>
-                <td class="label">Jenis Kelamin</td>
+                <td class="label">Jenis Pekerjaan</td>
                 <td class="separator">:</td>
                 <td>
-                    <input type="radio" name="jenis_kelamin" value="Laki-laki"> Laki-laki
-                    <input type="radio" name="jenis_kelamin" value="Perempuan"> Perempuan
+                    <select class="custom-select">
+                        <option>Full Time</option>
+                        <option>Paruh Waktu</option>
+                        <option>Kontrak</option>
+                        <option>Kasual</option>
                 </td>
             </tr>
         </table>
