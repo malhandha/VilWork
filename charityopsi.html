@@ -27,7 +27,7 @@
             </div>
             <div class="inputbox">
                 <span>Nomor Telepon :</span>
-                <input type="text" id="nomor_telepon" placeholder="Telepon Anda">
+                <input type="number" id="nomor_telepon" placeholder="Telepon Anda">
             </div>
             <div class="inputbox">
                 <span>Nominal Donasi :</span>
@@ -92,6 +92,8 @@
 
                     document.querySelectorAll("#bank_dropdown, #va_input, #qris_input, #ewallet_input")
                         .forEach(el => el.classList.add("hidden"));
+
+                    
 
                     if (metode === "tfbank") {
                         document.getElementById("bank_dropdown").classList.remove("hidden");
