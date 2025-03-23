@@ -6,7 +6,7 @@ if ($conn->connect_error) {
 }
 
 // CREATE DATA
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $id_perusahaan = $_POST['id_perusahaan'];
     $judul_pekerjaan = $_POST['judul_pekerjaan'];
     $deskripsi = $_POST['deskripsi'];
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
 }
 
 // UPDATE DATA
-if(isset($_POST['update'])){
+if (isset($_POST['update'])) {
     $id_perusahaan = $_POST['id_perusahaan'];
     $judul_pekerjaan = $_POST['judul_pekerjaan'];
     $deskripsi = $_POST['deskripsi'];
@@ -45,11 +45,11 @@ if(isset($_POST['update'])){
 }
 
 // DELETE DATA
-if(isset($_POST['delete'])){
+if (isset($_POST['delete'])) {
     $judul_pekerjaan = $_POST['judul_pekerjaan'];
-    
+
     $sql = "DELETE FROM lowongan WHERE judul_pekerjaan='$judul_pekerjaan'";
-    
+
     if (mysqli_query($koneksi, $sql)) {
         echo "✅ Data berhasil dihapus.";
     } else {
@@ -60,6 +60,7 @@ if(isset($_POST['delete'])){
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,6 +73,7 @@ if(isset($_POST['delete'])){
             margin: 0;
             padding: 0;
         }
+
         .header {
             background: #21a779;
             color: white;
@@ -80,15 +82,18 @@ if(isset($_POST['delete'])){
             justify-content: space-between;
             align-items: center;
         }
+
         .header .logo {
             font-size: 20px;
             font-weight: bold;
         }
+
         .header nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
         }
+
         .header .search {
             background: white;
             padding: 5px;
@@ -96,12 +101,14 @@ if(isset($_POST['delete'])){
             display: flex;
             align-items: center;
         }
+
         .header .search input {
             border: none;
             outline: none;
             padding: 5px;
             border-radius: 20px;
         }
+
         .container {
             background: #21a779;
             padding: 20px;
@@ -110,15 +117,19 @@ if(isset($_POST['delete'])){
             color: white;
             margin: 20px auto;
         }
+
         h2 {
             text-align: center;
         }
+
         label {
             font-weight: bold;
             display: block;
             margin-top: 10px;
         }
-        input, textarea {
+
+        input,
+        textarea {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -126,14 +137,17 @@ if(isset($_POST['delete'])){
             border-radius: 5px;
             background: #ddd;
         }
+
         .row {
             display: flex;
             justify-content: space-between;
             gap: 10px;
         }
+
         .row .column {
             width: 48%;
         }
+
         button {
             background: #007bff;
             color: white;
@@ -144,18 +158,21 @@ if(isset($_POST['delete'])){
             margin-top: 15px;
             width: 100%;
         }
+
         button:hover {
             background: #0056b3;
         }
+
         nav a.underline {
             text-decoration: underline;
         }
-      
+
         .action-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
         }
+
         .action-buttons button {
             padding: 8px;
             font-size: 14px;
@@ -163,16 +180,19 @@ if(isset($_POST['delete'])){
             border: none;
             cursor: pointer;
         }
+
         .update-btn {
             background-color: #ffc107;
             color: white;
         }
+
         .delete-btn {
             background-color: #dc3545;
             color: white;
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <div class="logo">
@@ -187,22 +207,22 @@ if(isset($_POST['delete'])){
             <input type="text" placeholder="Cari">
         </div>
     </div>
-    
+
     <div class="container">
         <h2>Publish Lowongan</h2>
         <form action="create.php" method="POST">
             <label for="id_perusahaan">ID Perusahaan</label>
             <input type="text" name="id_perusahaan" placeholder="Masukkan ID Perusahaan" required>
-            
+
             <label for="judul_pekerjaan">Judul Pekerjaan</label>
             <input type="text" name="judul_pekerjaan" placeholder="Contoh: Graphic Designer" required>
-            
+
             <label for="deskripsi">Deskripsi</label>
             <textarea name="deskripsi" rows="4" placeholder="Tulis deskripsi pekerjaan..." required></textarea>
-            
+
             <label for="lokasi">Lokasi</label>
             <input type="text" name="lokasi" placeholder="Contoh: Jakarta / Remote" required>
-            
+
             <div class="row">
                 <div class="column">
                     <label for="gaji_min">Gaji Min</label>
@@ -213,17 +233,17 @@ if(isset($_POST['delete'])){
                     <input type="number" name="gaji_max" placeholder="Contoh: 10000000" step="0.01" required>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="column">
                     <label for="tanggal_berakhir">Tanggal Berakhir</label>
                     <input type="date" name="tanggal_berakhir" required>
                 </div>
             </div>
-            
+
             <button type="submit" formaction="create.php" name="submit">Publish Lowongan</button>
-            
-        
+
+
             <div class="action-buttons">
                 <button type="submit" formaction="update.php" name="update" class="update-btn">
                     <i class="fas fa-edit"></i> Update
@@ -235,4 +255,5 @@ if(isset($_POST['delete'])){
         </form>
     </div>
 </body>
+
 </html>
