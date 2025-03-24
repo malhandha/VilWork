@@ -1,15 +1,11 @@
 <?php
-include 'koneksi.php'; // Koneksi database
-
-// Periksa apakah ID tersedia
+include 'koneksi.php';
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo "<script>alert('ID tidak ditemukan!'); window.location='riwayat_pelatihan.php';</script>";
     exit();
 }
 
-$id = $_GET['id']; // Ambil ID dari URL
-
-// Ambil data berdasarkan ID
+$id = $_GET['id']; 
 $query = "SELECT * FROM pelatihan WHERE id='$id'";
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
@@ -19,7 +15,6 @@ if (!$data) {
     exit();
 }
 
-// Jika tombol "Simpan Perubahan" diklik
 if (isset($_POST['update'])) {
     $nama = $_POST['nama'];
     $pelatihan = $_POST['pelatihan'];
@@ -27,7 +22,6 @@ if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $tanggal = $_POST['tanggal'];
 
-    // Update data ke database
     $update = "UPDATE pelatihan SET 
                 nama='$nama', 
                 pelatihan='$pelatihan', 

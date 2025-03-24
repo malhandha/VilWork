@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root"; // Sesuaikan dengan MySQL Anda
+$username = "root"; 
 $password = "";
-$dbname = "VillWork"; // Sesuaikan dengan database Anda
+$dbname = "VillWork"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -50,7 +50,7 @@ $result = $conn->query($query);
                         echo "<td class='border px-4 py-2'>
                                 <a href='edit_pelatihan.php?id_pelatihan=" . $row["id_pelatihan"] . "' class='bg-blue-500 text-white px-3 py-1 rounded'>Edit</a>
                                 <a href='hapus_pelatihan.php?id_pelatihan=" . $row["id_pelatihan"] . "' class='bg-red-500 text-white px-3 py-1 rounded' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
-                              </td>";
+                            </td>";
                         echo "</tr>";
                     }
                 } else {

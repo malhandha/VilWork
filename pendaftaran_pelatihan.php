@@ -1,16 +1,14 @@
 <?php
 $servername = "localhost";
-$username = "root"; // Sesuaikan dengan MySQL Anda
-$password = ""; // Sesuaikan dengan MySQL Anda
+$username = "root"; 
+$password = ""; 
 $dbname = "VillWork";
 
-// Koneksi ke database
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Proses pendaftaran
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST['nama'];
     $nama_pelatihan = $_POST['nama_pelatihan'];
@@ -18,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $tanggal_pelatihan = $_POST['tanggal_pelatihan'];
 
-    // Query insert tanpa id_pelatihan karena sudah AUTO_INCREMENT
     $sql = "INSERT INTO pelatihan (nama, nama_pelatihan, no_tlp, email, tanggal) 
             VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
