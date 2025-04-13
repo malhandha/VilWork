@@ -24,11 +24,11 @@ if (isset($_POST['update'])) {
                WHERE id_pelatihan='$id_pelatihan'";
     $update = mysqli_query($conn, $query);
 
-if ($update) {
-    echo "<script>alert('Data berhasil diupdate!'); window.location='riwayat_pelatihan.php';</script>";
-} else {
-    echo "<script>alert('Update gagal!');</script>";
-}
+    if ($update) {
+        echo "<script>alert('Data berhasil diupdate!'); window.location='riwayat_pelatihan.php';</script>";
+    } else {
+        echo "<script>alert('Update gagal!');</script>";
+    }
 }
 ?>
 
@@ -48,13 +48,13 @@ if ($update) {
         <label>Nama:</label>
         <input type="text" name="nama" value="<?= $data['nama']; ?>" required><br>
         <label class="block font-medium">Nama Pelatihan</label>
-                <select name="nama_pelatihan" class="w-full p-2 border border-gray-300 rounded" value="<?= $data['nama_pelatihan']; ?>" required>
-                    <option value="">Pilih Pelatihan</option>
-                    <option value="Belajar Microsoft Office">Belajar Microsoft Office</option>
-                    <option value="Cara Bertani Modern">Cara Bertani Modern</option>
-                    <option value="Bertukang Modern">Bertukang Modern</option>
-                    <option value="Ternak Sapi Sukses">Ternak Sapi Sukses</option>
-                </select>
+        <select name="nama_pelatihan" class="w-full p-2 border border-gray-300 rounded" value="<?= $data['nama_pelatihan']; ?>" required>
+            <option value="">Pilih Pelatihan</option>
+            <option value="Belajar Microsoft Office">Belajar Microsoft Office</option>
+            <option value="Cara Bertani Modern">Cara Bertani Modern</option>
+            <option value="Bertukang Modern">Bertukang Modern</option>
+            <option value="Ternak Sapi Sukses">Ternak Sapi Sukses</option>
+        </select>
         <label>No. Telepon:</label>
         <input type="text" name="no_tlp" value="<?= $data['no_tlp']; ?>" required><br>
 
@@ -96,7 +96,7 @@ if ($update) {
             text-align: center;
             margin-bottom: 20px;
             color: #333;
-            margin-top: 20px; 
+            margin-top: 20px;
         }
 
         label {
