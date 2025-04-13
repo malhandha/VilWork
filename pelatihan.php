@@ -1,63 +1,13 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
    <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>VillWork - Pelatihan</title>
-   <link rel="stylesheet" href="styles.css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <title>Minecraft The Movie</title>
    <link rel="stylesheet" href="css/navbar.css">
+   <link rel="stylesheet" href="css/produkkonten.css">
    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-   <style>
-      body {
-         font-family: poppins, sans-serif;
-         background-color: #f4f4f4;
-      }
-
-      .pelatihan-container {
-         display: flex;
-         gap: 20px;
-         padding: 20px;
-         flex-wrap: wrap;
-         margin-top: 0px;
-      }
-
-      .riwayat-container {
-         display: flex;
-         gap: 20px;
-         padding: 20px;
-         flex-wrap: wrap;
-      }
-
-      .pelatihan-card {
-         background: white;
-         padding: 10px;
-         border-radius: 8px;
-         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-         text-align: center;
-         cursor: pointer;
-      }
-
-      .pelatihan-card img {
-         width: 274px;
-         height: 395px;
-         border-radius: 8px;
-      }
-
-      h2 {
-         text-align: center;
-         margin-top: 20px;
-      }
-
-      .history-card img {
-         width: 394px;
-         height: 210px;
-         border-radius: 8px;
-      }
-   </style>
 </head>
 
 <body>
@@ -180,55 +130,110 @@
          </div>
       </nav>
    </header>
-
-   <script src="js/scriptnavbar.js"></script>
-   <style>
-      main.konten {
-         margin-top: 100px;
-      }
-   </style>
-   <main class="konten">
-      <div>
-         <section class="pelatihan-terbaru">
-            <h2>Pelatihan Terbaru</h2>
-            <div class="pelatihan-container">
-               <div class="pelatihan-card" onclick="window.location.href='pendaftaran_pelatihan.php'">
-                  <img src="pelatihan1.png" alt="Belajar Microsoft Office">
-
-               </div>
-               <div class="pelatihan-card" onclick="window.location.href='pendaftaran_pelatihan.php'">
-                  <img src="pelatihan2.png" alt="Cara Bertani Modern">
-
-               </div>
-               <div class="pelatihan-card" onclick="window.location.href='pendaftaran_pelatihan.php'">
-                  <img src="pelatihan3.png" alt="Bertukang Modern">
-
-               </div>
-               <div class="pelatihan-card" onclick="window.location.href='pendaftaran_pelatihan.php'">
-                  <img src="pelatihan4.png" alt="Ternak Sapi Sukses">
-
+   <div class="menu">
+      <h2>Pelatihan Terbaru</h2>
+      <div class="mainpelatihan">
+         <div class="konten">
+            <div class="poster">
+               <img src="foto/msoffice.jpg" alt="microsoft" class="poster-img">
+               <div class="overlay">
+                  <div class="badge badge-right">11 Juni 2025</div>
+                  <a href="pendaftaran_pelatihan.php" class="beli">Daftar Sekarang</a>
+                  <div class="bottom-overlay">
+                     <h1 class="title-konten">Belajar Micosoft Ofice</h1>
+                     <div class="formats">
+                        <div class="tanggal">
+                           <i class="ri-calendar-todo-line"></i>
+                           <span>Rabu, 11 Juni 2025</span>
+                        </div>
+                     </div>
+                     <div class="formats">
+                        <div class="waktu">
+                           <i class="ri-time-line"></i>
+                           <span>17.00 - 19.00 WIB</span>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
-         </section>
-
-         <section class="riwayat-pelatihan">
-            <h2>Riwayat Pelatihan</h2>
-            <div class="riwayat-container">
-               <div class="history-card">
-                  <img src="history1.png" alt="Mengolah Limbah Plastik">
-               </div>
-               <div class="history-card">
-                  <img src="history2.png" alt="Belajar Membuat Kue">
-               </div>
-               <div class="history-card">
-                  <img src="history3.png" alt="Membuat Kue Tradisional">
+         </div>
+         <div class="konten">
+            <div class="poster">
+               <img src="foto/tanipelatihan.jpg" alt="microsoft" class="poster-img">
+               <div class="overlay">
+                  <div class="badge badge-right">24 Juni 2025</div>
+                  <a href="pendaftaran_pelatihan.php" class="beli">Daftar Sekarang</a>
+                  <div class="bottom-overlay">
+                     <h1 class="title-konten">Belajar Bertani</h1>
+                     <div class="formats">
+                        <div class="tanggal">
+                           <i class="ri-calendar-todo-line"></i>
+                           <span>Selasa, 24 Juni 2025</span>
+                        </div>
+                     </div>
+                     <div class="formats">
+                        <div class="waktu">
+                           <i class="ri-time-line"></i>
+                           <span>11.00 - 13.00 WIB</span>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
-         </section>
+         </div>
+         <div class="konten">
+            <div class="poster">
+               <img src="foto/ternakpelatihan.jpg" alt="microsoft" class="poster-img">
+               <div class="overlay">
+                  <div class="badge badge-right">02 Juli 2025</div>
+                  <a href="pendaftaran_pelatihan.php" class="beli">Daftar Sekarang</a>
+                  <div class="bottom-overlay">
+                     <h1 class="title-konten">Belajar Beternak</h1>
+                     <div class="formats">
+                        <div class="tanggal">
+                           <i class="ri-calendar-todo-line"></i>
+                           <span>Selasa, 02 Juli 2025</span>
+                        </div>
+                     </div>
+                     <div class="formats">
+                        <div class="waktu">
+                           <i class="ri-time-line"></i>
+                           <span>09.00 - 11.00 WIB</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="konten">
+            <div class="poster">
+               <img src="foto/konstruksipelatihan.jpg" alt="microsoft" class="poster-img">
+               <div class="overlay">
+                  <div class="badge badge-right">11 Juli 2025</div>
+                  <a href="pendaftaran_pelatihan.php" class="beli">Daftar Sekarang</a>
+                  <div class="bottom-overlay">
+                     <h1 class="title-konten">Belajar Konstruksi Umum</h1>
+                     <div class="formats">
+                        <div class="tanggal">
+                           <i class="ri-calendar-todo-line"></i>
+                           <span>Jumat, 11 Juli 2025</span>
+                        </div>
+                     </div>
+                     <div class="formats">
+                        <div class="waktu">
+                           <i class="ri-time-line"></i>
+                           <span>10.00 - 12.00 WIB</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-   </main>
-
-   <script src="script.js"></script>
+   </div>
 </body>
+<style>
+
+</style>
 
 </html>
