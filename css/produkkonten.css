@@ -6,14 +6,16 @@ body {
     align-items: center;
     height: 100vh;
     font-family: sans-serif;
+    background-color:aquamarine;
 }
 
 .poster {
     position: relative;
-    width: 300px;
+    width: 276px;
+    height: 427px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 15px rgba(7 , 7, 7, 0.9);
 }
 
 .poster-img {
@@ -36,17 +38,17 @@ body {
     padding: 4px 10px;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 999px;
+    border-radius: 99px;
     color: white;
 }
 
 .badge-left {
-    left: -4px;
-    font-size: medium;
-    font-weight: 900;
-    top: -4px;
-    background: rgba(255, 0, 0, 1);
-    padding: 15px;
+    left: -3px;
+    font-size: 20px;
+    font-weight: bold;
+    top: -3px;
+    background:#1FC28B;
+    padding: 14px;
     border-radius: 8px;
 }
 
@@ -60,20 +62,24 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 20px 10px 10px 10px;
-    background: rgba(0, 0, 0, 0.75);
+    font-style : poppins;
+    padding: 20px 0px 10px 10px;
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center; 
-    border-radius: 10px;
+    align-items: left;
+    justify-content: left;
+    text-align: left; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-right:10px;
 }
 
-.title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
+.title-konten {
+    margin: -5px 0px 0px 0px;
+    font-style : poppins;
+    font-size: 22px;
+    font-weight: regular;
 }
 
 .release {
@@ -83,11 +89,46 @@ body {
 }
 
 .formats {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: regular;
     color: #ccc;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 10px;
-    margin-top: 1px;
+    margin-top: 8px;
+}
+
+.beli {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    padding: 10px 30px;
+    color: #fffffe;
+    justify-content:center;
+    text-decoration: none;
+    background: #1AB882;
+    border-radius: 30px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    z-index: 3;
+}
+
+.poster:hover .beli {
+    opacity: 1;
+}
+.poster::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0); /* awalnya transparan */
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.poster:hover::before {
+    background-color: rgba(0, 0, 0, 0.4); /* efek gelap saat hover */
 }
