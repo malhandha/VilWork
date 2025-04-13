@@ -1,147 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-
-<body><form action="create.php" method="POST">
-    NIM: <input type="text" name="nim"><br>
-    Nama: <input type="text" name="nama"><br>
-    Jurusan: <input type="text" name="jurusan"><br>
-    <input type="submit" name="submit" value="Tambah Data">
-    </form>
-    <form id="regist">
-        <h2>Register</h2>
-        <table>
-            <tr>
-                <td><label for="nama">Nama</label></td>
-                <td>:</td>
-                <td><input type="text" id="nama" name="nama" required></td>
-            </tr>
-            <tr>
-                <td><label for="email">Email</label></td>
-                <td>:</td>
-                <td><input type="email" id="email" name="email" required></td>
-            </tr>
-            <tr>
-                <td><label for="alamat">Alamat</label></td>
-                <td>:</td>
-                <td><input type="text" id="alamat" name="alamat" required></td>
-            </tr>
-            <tr>
-                <td><label for="tempatlahir">Tempat Lahir</label></td>
-                <td>:</td>
-                <td><input type="text" id="tempatlahir" name="tempatlahir" required></td>
-            </tr>
-            <tr>
-                <td><label for="tgllahir">Tanggal Lahir</label></td>
-                <td>:</td>
-                <td><input type="date" id="tgllahir" name="tgllahir" required></td>
-            </tr>
-            <tr>
-                <td><label for="pw">Password</label></td>
-                <td>:</td>
-                <td><input type="password" id="pw" name="pw" required></td>
-            </tr>
-            <tr>
-                <td><label for="gender">Jenis Kelamin</label></td>
-                <td>:</td>
-                <td>
-                    <input type="radio" name="gender" value="Laki-laki" required> Laki-laki
-                    <input type="radio" name="gender" value="Perempuan"> Perempuan
-                </td>
-            </tr>
-        </table>
-        <input type="submit" name="submit" id="submit" value="Daftar">
-    </form>
-    <script src="script.js"></script>
-</body>
-<style>
-    td {
-        vertical-align: middle;
-    }
-
-    td label {
-        white-space: nowrap;
-    }
-
-    .form-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    form {
-        background-color: rgb(203, 248, 248);
-        padding: 20px;
-        border-radius: 15px;
-        width: 400px;
-    }
-
-    table {
-        width: 100%;
-    }
-
-    td {
-        padding: 4px;
-    }
-
-    input[type="text"] {
-        width: 99%;
-    }
-
-    input[type="email"] {
-        width: 99%;
-    }
-
-    input[type="password"] {
-        width: 99%;
-    }
-
-    input[type="date"] {
-        width: 100%;
-    }
-
-    input[type="submit"] {
-        font-weight: bold;
-        width: 100%;
-        padding: 10px;
-        background-color: green;
-        border-radius: 10px;
-        color: rgb(253, 252, 252);
-        cursor: pointer;
-        font-size: large;
-    }
-
-    input,
-    select,
-    textarea {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    h2 {
-        text-align: center;
-        margin-left: 5%;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-        font-family: 'Poppins', sans-serif;
-        background-color: antiquewhite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        margin: 0;
-        margin-top: 200px;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('foto/vilwork-banner.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-</style>
 
-<script>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a, .login-btn {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+
+    .login-btn {
+      border: 2px solid white;
+      padding: 5px 15px;
+      background: transparent;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .register-box {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register-form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .register-form h2 span {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 35px 10px 10px;
+      border: none;
+      border-bottom: 2px solid white;
+      background: transparent;
+      color: white;
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 10px;
+      top: 35px;
+      color: white;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      color: white;
+      margin: 10px 0;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-text {
+      text-align: center;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .login-text a {
+      color: #00f2fe;
+      text-decoration: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Logo</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <button class="login-btn">Login</button>
+    </nav>
+  </header>
+
+  <section class="register-box">
+    <div class="register-form">
+      <button class="close-btn"><i class="fas fa-times"></i></button>
+      <h2><span>Registration</span></h2>
+
+      <form action="#">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" required>
+          <i class="fas fa-user"></i>
+        </div>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" required>
+          <i class="fas fa-envelope"></i>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" required>
+          <i class="fas fa-lock"></i>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">I agree to the terms & conditions</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
+        <p class="login-text">Already have an account? <a href="#">Login</a></p>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
+<!-- <script>
     document.getElementById("regist").addEventListener("submit", function (event) {
         let nama = document.getElementById("nama").value;
         let email = document.getElementById("email").value;
@@ -203,6 +261,6 @@
     });
 
 
-</script>
+</script> -->
 
 </html>
