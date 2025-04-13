@@ -110,6 +110,7 @@
     .checkbox-group {
       display: flex;
       align-items: center;
+      gap: 8px;
       color: white;
       margin: 10px 0;
     }
@@ -117,7 +118,7 @@
     .submit-btn {
       width: 100%;
       padding: 10px;
-      background: black;
+      background: #141e43;
       color: white;
       border: none;
       border-radius: 5px;
@@ -184,10 +185,26 @@
           <i class="fas fa-lock"></i>
         </div>
 
+        <div class="input-group">
+            <label>Alamat</label>
+            <input type="password" required>
+            <i class="fas fa-home"></i>
+          </div>
+
+          <div class="input-group">
+            <label>No HP</label>
+            <input type="password" required>
+            <i class="fas fa-phone"></i>
+          </div>
+
         <div class="checkbox-group">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">I agree to the terms & conditions</label>
+            <label><input type="checkbox" required>
+                </label>
+                <div>
+                    I agree to the terms & conditions
+                </div>
         </div>
+       
 
         <button type="submit" class="submit-btn">Register</button>
         <p class="login-text">Already have an account? <a href="#">Login</a></p>
