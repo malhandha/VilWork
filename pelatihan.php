@@ -3,7 +3,7 @@
 
 <head>
    <meta charset="UTF-8">
-   <title>Minecraft The Movie</title>
+   <title>Pelatihan</title>
    <link rel="stylesheet" href="css/navbar.css">
    <link rel="stylesheet" href="css/produkkonten.css">
    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">

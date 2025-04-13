@@ -3,10 +3,10 @@
   --black-color: #141e43;
   --black-color-light: rgb(25, 38, 83);
   --black-color-lighten: #dde3f3;
-  --white-color:rgb(235, 235, 235);
+  --white-color: rgb(235, 235, 235);
   --body-color: rgb(235, 235, 235);
 
-  --body-font: 'Poppins', sans-serif;
+  --body-font: "Poppins", sans-serif;
   --normal-font-size: 0.938rem;
 
   --font-regular: 400;
@@ -379,8 +379,8 @@ a {
   width: 100%;
   font-style: poppins;
   padding: 18px 0px 10px 10px;
-  background:rgb(0, 0, 0);
-  opacity:85%;
+  background: rgb(0, 0, 0);
+  opacity: 85%;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -401,7 +401,7 @@ a {
 .title-konten {
   margin: -5px 0px 3px 0px;
   font-size: 20px;
-  font-style:poppins;
+  font-style: poppins;
   font-weight: 500;
 }
 
@@ -415,12 +415,12 @@ a {
   margin-top: 3px;
 }
 
-.tanggal, .waktu {
+.tanggal,
+.waktu {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-
 
 .beli {
   position: absolute;
