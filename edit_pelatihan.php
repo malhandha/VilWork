@@ -125,7 +125,7 @@ if (isset($_POST['update'])) {
             width: 100%;
             padding: 12px;
             margin-top: 15px;
-            background-color: #1FC28B;
+            background-color: #141E43;
             color: white;
             border: none;
             border-radius: 5px;
@@ -135,14 +135,14 @@ if (isset($_POST['update'])) {
         }
 
         button:hover {
-            background-color: #1FC28B;
+            background-color: #141E43;
         }
 
         a {
             display: block;
             text-align: center;
             margin-top: 10px;
-            color: #1FC28B;
+            color: #141E43;
             text-decoration: none;
             font-weight: bold;
         }

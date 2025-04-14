@@ -38,22 +38,32 @@ $conn->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pendaftaran Pelatihan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" type="image/png" href="foto/logo_baru.png">
   <link rel="stylesheet" href="css/produkkonten.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
 </head>
 
-<body class="bg-gray-100 font-sans">
+<body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const toggle = document.getElementById("nav-toggle");
+      const menu = document.getElementById("nav-menu");
+
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("show-menu");
+        toggle.classList.toggle("show-icon");
+      });
+    });
+  </script>
+
   <header class="header">
     <nav class="nav container">
       <div class="nav__data">
         <a href="#" class="nav__logo">
           VillWork
-        </a><script src="https://cdn.tailwindcss.com"></script>
+        </a>
 
         <div class="nav__toggle" id="nav-toggle">
           <i class="ri-menu-line nav__burger"></i>
@@ -136,7 +146,6 @@ $conn->close();
             </ul>
           </li>
 
-
           <li class="dropdown__item">
             <div class="nav__link">
               Charity <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -168,7 +177,7 @@ $conn->close();
       </div>
     </nav>
   </header>
-<!-- <style> -->
+  <!-- <style>
     :root {
       --header-height: 3.5rem;
 
@@ -473,18 +482,18 @@ $conn->close();
         transition: top .3s;
       }
     }
-  </style>
-  <script src="js/scriptnavbar.js"></script>
-  <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md" style="margin-top: 100px;">
-    <h2 class="text-center text-2xl font-semibold mb-6">Daftar Pelatihan</h2>
-    <form action="" method="POST" class="space-y-4">
-      <div>
-        <label class="block font-medium">Nama</label>
-        <input type="text" name="nama" class="w-full p-2 border border-gray-300 rounded" required>
+  </style> -->
+
+  <div class="form-container">
+    <h2 class="form-title">Daftar Pelatihan</h2>
+    <form action="" method="POST" class="form-content">
+      <div class="form-group">
+        <label class="form-label">Nama</label>
+        <input type="text" name="nama" class="form-input" required>
       </div>
-      <div>
-        <label class="block font-medium">Nama Pelatihan</label>
-        <select name="nama_pelatihan" class="w-full p-2 border border-gray-300 rounded" required>
+      <div class="form-group">
+        <label class="form-label">Nama Pelatihan</label>
+        <select name="nama_pelatihan" class="form-input" required>
           <option value="">Pilih Pelatihan</option>
           <option value="Belajar Microsoft Office">Belajar Microsoft Office</option>
           <option value="Cara Bertani Modern">Cara Bertani Modern</option>
@@ -492,21 +501,105 @@ $conn->close();
           <option value="Ternak Sapi Sukses">Ternak Sapi Sukses</option>
         </select>
       </div>
-      <div>
-        <label class="block font-medium">Nomor Telepon</label>
-        <input type="tel" name="nomor_telepon" class="w-full p-2 border border-gray-300 rounded" required>
+      <div class="form-group">
+        <label class="form-label">Nomor Telepon</label>
+        <input type="tel" name="nomor_telepon" class="form-input" required>
       </div>
-      <div>
-        <label class="block font-medium">Email</label>
-        <input type="email" name="email" class="w-full p-2 border border-gray-300 rounded" required>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-input" required>
       </div>
-      <div>
-        <label class="block font-medium">Tanggal Pelatihan</label>
-        <input type="date" name="tanggal_pelatihan" class="w-full p-2 border border-gray-300 rounded" required>
+      <div class="form-group">
+        <label class="form-label">Tanggal Pelatihan</label>
+        <input type="date" name="tanggal_pelatihan" class="form-input" required>
       </div>
-      <button type="submit" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700">Submit</button>
+      <button type="submit" class="submit-btn">
+        Submit
+      </button>
     </form>
   </div>
+  <style>
+.form-container {
+  max-width: 500px;
+  margin: 150px auto; 
+  padding: 30px 60px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* Label */
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Input dan select */
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #141E43;
+  box-shadow: 0 0 5px rgba(20, 30, 67, 0.3);
+  outline: none;
+}
+
+/* Tombol submit */
+.submit-btn {
+  margin-top: 15px;
+  background-color: #141E43;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0f1732;
+}
+
+/* Responsif */
+@media (max-width: 576px) {
+  .form-container {
+    padding: 20px 15px;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+}
+
+  </style>
 </body>
 
 </html>
