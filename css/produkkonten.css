@@ -466,3 +466,16 @@ h2 {
 
 .garis {
 }
+
+.app-layout {
+  font-family: var(--body-font);
+  background-color: var(--body-color);
+  color: var(--black-color);
+}
+
+.app-layout .header,
+.app-layout .nav,
+.app-layout .mainpelatihan {
+  max-width: 1200px;
+  margin: 0 auto;
+}

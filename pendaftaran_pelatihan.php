@@ -42,7 +42,7 @@ $conn->close();
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/produkkonten.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
@@ -53,7 +53,7 @@ $conn->close();
       <div class="nav__data">
         <a href="#" class="nav__logo">
           VillWork
-        </a>
+        </a><script src="https://cdn.tailwindcss.com"></script>
 
         <div class="nav__toggle" id="nav-toggle">
           <i class="ri-menu-line nav__burger"></i>
@@ -168,7 +168,7 @@ $conn->close();
       </div>
     </nav>
   </header>
-  <style>
+<!-- <style> -->
     :root {
       --header-height: 3.5rem;
 
