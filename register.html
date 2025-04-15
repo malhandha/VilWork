@@ -48,12 +48,29 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
-    .register-box {
+    .login-box{
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .login-form{
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-box {
+      flex: 1;
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      display: none;
     }
 
     .register-form {
@@ -112,7 +129,7 @@
       align-items: center;
       gap: 8px;
       color: white;
-      margin: 10px 0;
+      margin: 12px 0;
     }
 
     .submit-btn {
@@ -146,10 +163,17 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    .agree{
+      display: flex;
+    align-items: center;
+    gap: 5px;
+    }
+
   </style>
 </head>
 <body>
-
+<!-- 
   <header>
     <div class="logo">Logo</div>
     <nav>
@@ -159,11 +183,63 @@
       <a href="#">Contact</a>
       <button class="login-btn">Login</button>
     </nav>
-  </header>
+  </header> -->
 
-  <section class="register-box">
+  <section  id="login-box" class="login-box">
     <div class="register-form">
-      <button class="close-btn"><i class="fas fa-times"></i></button>
+      <button class="close-btn" onclick="closeForm()"><i class="fas fa-times"></i></button>
+      <h2><span>Login</span></h2>
+
+      <form action="#">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" required>
+          <i class="fas fa-user"></i>
+        </div>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" required>
+          <i class="fas fa-envelope"></i>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" required>
+          <i class="fas fa-lock"></i>
+        </div>
+
+        <div class="input-group">
+            <label>Alamat</label>
+            <input type="password" required>
+            <i class="fas fa-home"></i>
+          </div>
+
+          <div class="input-group">
+            <label>No HP</label>
+            <input type="password" required>
+            <i class="fas fa-phone"></i>
+          </div>
+
+        <div class="checkbox-group">
+            <div class="checkbox"><label><input type="checkbox" required>
+            </label></div>
+                <div class:"acccept">
+                    I agree to the terms & conditions
+                </div>
+        </div>
+       
+
+        <button type="submit" class="submit-btn">Register</button>
+        <p class="login-text">Already have an account? <a href="#" onclick="showRegister() ">Register</a></p>
+      </form>
+    </div>
+  </section>
+
+
+  <section id="register-box"  class="register-box">
+    <div class="register-form">
+      <button class="close-btn" onclick="closeForm()"><i class="fas fa-times"></i></button>
       <h2><span>Registration</span></h2>
 
       <form action="#">
@@ -198,16 +274,16 @@
           </div>
 
         <div class="checkbox-group">
-            <label><input type="checkbox" required>
-                </label>
-                <div>
+            <div class="checkbox"><label><input type="checkbox" required>
+            </label></div>
+                <div class:"acccept">
                     I agree to the terms & conditions
                 </div>
         </div>
        
 
         <button type="submit" class="submit-btn">Register</button>
-        <p class="login-text">Already have an account? <a href="#">Login</a></p>
+        <p class="login-text">Already have an account? <a href="#" onclick="showLogin() ">Login</a></p>
       </form>
     </div>
   </section>
@@ -215,6 +291,22 @@
 </body>
 </html>
 
+<script>
+  function showLogin() {
+    document.getElementById("login-box").style.display = "flex";
+    document.getElementById("register-box").style.display = "none";
+  }
+
+  function showRegister() {
+    document.getElementById("register-box").style.display = "flex";
+    document.getElementById("login-box").style.display = "none";
+  }
+
+  function closeForm() {
+    document.getElementById("login-box").style.display = "none";
+    document.getElementById("register-box").style.display = "none";
+  }
+</script>
 
 <!-- <script>
     document.getElementById("regist").addEventListener("submit", function (event) {
