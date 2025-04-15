@@ -526,7 +526,7 @@ $conn->close();
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'poppins', sans-serif;
 }
 
 .form-title {
@@ -543,10 +543,9 @@ $conn->close();
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
-/* Label */
 .form-label {
   display: block;
   margin-bottom: 6px;
@@ -555,7 +554,6 @@ $conn->close();
   color: #555;
 }
 
-/* Input dan select */
 .form-input {
   width: 100%;
   padding: 10px 14px;
@@ -571,7 +569,6 @@ $conn->close();
   outline: none;
 }
 
-/* Tombol submit */
 .submit-btn {
   margin-top: 15px;
   background-color: #141E43;
@@ -588,7 +585,6 @@ $conn->close();
   background-color: #0f1732;
 }
 
-/* Responsif */
 @media (max-width: 576px) {
   .form-container {
     padding: 20px 15px;
