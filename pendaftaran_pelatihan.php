@@ -555,7 +555,6 @@ $conn->close();
   color: #555;
 }
 
-.menu{}
 
 .form-input {
   width: 100%;
