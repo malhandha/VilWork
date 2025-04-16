@@ -33,7 +33,7 @@ $result = $conn->query($query);
   <header class="header">
     <nav class="nav container">
       <div class="nav__data">
-        <a href="#" class="nav__logo">
+        <a href="dashboard.php" class="nav__logo">
           VillWork
         </a>
 
@@ -67,7 +67,7 @@ $result = $conn->query($query);
             </ul>
           </li>
 
-          <li><a href="publish_lowongan_baru.php" class="nav__link">Profile</a></li>
+          <li><a href="publish_lowongan_baru.php" class="nav__link">Publish Lowongan</a></li>
 
           <li class="dropdown__item">
             <div class="nav__link">
@@ -95,7 +95,7 @@ $result = $conn->query($query);
             </ul>
           </li>
 
-          <li><a href="charity.php" class="nav__link">Profile</a></li>
+          <li><a href="charity.php" class="nav__link">Charity</a></li>
 
           <li><a href="profile.php" class="nav__link">Profile</a></li>
         </ul>
