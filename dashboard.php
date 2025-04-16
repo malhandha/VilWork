@@ -3,786 +3,532 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <title>Responsive NFT Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
-<body>
+<body class="bg-gray-100 text-gray-900">
 
-    <nav>
-        <a href="#" class="logo">AsmrProg</a>
-        <div class="links">
-            <a href="#">Home</a>
-            <a href="#">Features</a>
-            <a href="#">Blog</a>
-            <a href="#">About Us</a>
-        </div>
-        <div class="login">
-            <button class="signup">Get Started</button>
-            <button>Login</button>
-        </div>
-    </nav>
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__data">
+                <a href="#" class="nav__logo">
+                    VillWork
+                </a>
 
-    <div class="konten_utama">
-        <div class="left">
-            <h1>Let's Buy Some <span>AsmrGraph</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, eaque harum. Nobis ipsam magni labore?
-            </p>
-            <a href="#">
-                <i class='bx bx-basket'></i>
-                <span>Buy Now</span>
-            </a>
-        </div>
-        <img src="assets/header.png">
-    </div>
-
-    <h2 class="separator">
-        Sell Your NFTs
-    </h2>
-
-    <div class="sell-nft">
-        <div class="item">
-            <div class="konten_utama">
-                <i class='bx bx-wallet-alt'></i>
-                <h5>Connect Wallet</h5>
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line nav__burger"></i>
+                    <i class="ri-close-line nav__close"></i>
+                </div>
             </div>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste modi ab sunt dolores ex dolor, suscipit
-                fuga sed earum.</p>
-        </div>
-        <div class="item">
-            <div class="konten_utama">
-                <i class='bx bx-cart-alt'></i>
-                <h5>NFT Marketplace</h5>
-            </div>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste modi ab sunt dolores ex dolor, suscipit
-                fuga sed earum.</p>
-        </div>
-        <div class="item">
-            <div class="konten_utama">
-                <i class='bx bx-grid-alt'></i>
-                <h5>Launch DApps</h5>
-            </div>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste modi ab sunt dolores ex dolor, suscipit
-                fuga sed earum.</p>
-        </div>
-    </div>
 
-    <h2 class="separator">
-        Super Hot NFTs
-    </h2>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="#" class="nav__link">Home</a></li>
 
-    <div class="nft-shop">
-        <div class="category">
-            <a href="#">AsmrGraph</a>
-            <a href="#">Abstract</a>
-            <a href="#">Monkey</a>
-            <a href="#">Cars</a>
-            <a href="#">Trending</a>
-        </div>
-
-        <div class="nft-list">
-            <div class="item">
-                <img src="assets/item-1.png">
-                <div class="info">
-                    <div>
-                        <h5>CryptoArt</h5>
-                        <div class="btc">
-                            <i class='bx bxl-bitcoin'></i>
-                            <p>0.29 BTC</p>
+                    <li class="dropdown__item">
+                        <div class="nav__link">
+                            Cari Kerja <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                         </div>
-                    </div>
-                    <p>5 of 33</p>
-                </div>
-                <div class="bid">
-                    <p>2h 28m 1s</p>
-                    <a href="#">Place a Bid</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="assets/item-2.png">
-                <div class="info">
-                    <div>
-                        <h5>Abs-Art</h5>
-                        <div class="btc">
-                            <i class='bx bxl-bitcoin'></i>
-                            <p>0.21 BTC</p>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-pie-chart-line"></i> Pekerjaan Terdekat
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-arrow-up-down-line"></i> Riwayat Pekerjaan
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown__item">
+                        <div class="nav__link">
+                            Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                         </div>
-                    </div>
-                    <p>7 of 12</p>
-                </div>
-                <div class="bid">
-                    <p>1h 28m 1s</p>
-                    <a href="#">Place a Bid</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="assets/item-3.png">
-                <div class="info">
-                    <div>
-                        <h5>TestArt</h5>
-                        <div class="btc">
-                            <i class='bx bxl-bitcoin'></i>
-                            <p>0.21 BTC</p>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-user-line"></i> Postingan Saya
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-lock-line"></i> Tambah Unggahan
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-message-3-line"></i> Riwayat
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown__item">
+                        <div class="nav__link">
+                            Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                         </div>
-                    </div>
-                    <p>9 of 23</p>
-                </div>
-                <div class="bid">
-                    <p>4h 21m 1s</p>
-                    <a href="#">Place a Bid</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="assets/item-4.png">
-                <div class="info">
-                    <div>
-                        <h5>Art-4</h5>
-                        <div class="btc">
-                            <i class='bx bxl-bitcoin'></i>
-                            <p>0.45 BTC</p>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="pelatihan.php" class="dropdown__link">
+                                    <i class="ri-presentation-line"></i>Pelatian Terbaru
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="pendaftaran_pelatihan.php" class="dropdown__link">
+                                    <i class="ri-add-circle-line"></i>Tambah Pelatihan
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="riwayat_pelatihan.php" class="dropdown__link">
+                                    <i class="ri-user-line"></i>Pelatihan Saya
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown__item">
+                        <div class="nav__link">
+                            Charity <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                         </div>
-                    </div>
-                    <p>1 of 33</p>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-user-line"></i> Berbagi
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-lock-line"></i> Riwayat
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-message-3-line"></i> Messages
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#" class="nav__link">Profile</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-24">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center px-6 py-20 space-y-12 lg:space-y-0 lg:space-x-12">
+            <div class="lg:w-1/2">
+                <h1 class="text-5xl font-bold text-[#141e43]">
+                    Halo,
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#141e43] to-[#141e43]">VillWorkers</span>
+                </h1>
+                <p class="mt-6 text-gray-600">
+                    Mencari kerja didaerah anda lebih gampang dengan menggunakan Villwork
+                </p>
+                <a href="#" class="mt-6 inline-block bg-[#141e43] text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition">
+                    Get Started
+                </a>
+            </div>
+            <div class="lg:w-1/2">
+                <img src="foto/dashboardfoto.png" alt="header" class="w-full rounded-lg shadow-xl" style="width: 300px; height: 100%; ">
+            </div>
+        </div>
+
+        <h2 class="text-3xl font-semibold text-center text-[#141e43] mt-20">OUR FEATURES</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 px-6">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <i class="ri-search-2-line text-[#141e43] text-4xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Cari Kerja</h4>
+                <p class="text-gray-600 mb-4">
+                    Anda Dapat mencari kerja di sekitar daerah anda </p>
+                <a href="cari_kerja.php" class="text-[#141e43] hover:text-opacity-80 flex items-center">
+                    Join Now <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <i class="ri-add-circle-line text-[#141e43] text-4xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Unggah Pekerjaan</h4>
+                <p class="text-gray-600 mb-4">
+                    Anda ingin membuka lowongan pekerjaan untuk sekitar daerah anda? Ini solusinya </p>
+                <a href="publish_lowongan_baru.php" class="text-[#141e43] hover:text-opacity-80 flex items-center">
+                    Join Now <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <i class="ri-presentation-line text-[#141e43] text-4xl mb-4"></i>
+
+                <h4 class="font-semibold text-xl mb-2">Pelatihan</h4>
+                <p class="text-gray-600 mb-4">
+                    Anda ingin meningkatkan skill anda tetapi tidak memiliki budget? ini solusinya</p>
+                <a href="pelatihan.php" class="text-[#141e43] hover:text-opacity-80 flex items-center">
+                    Join Now <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <i class="ri-gift-line text-[#141e43] text-4xl mb-4"></i>
+                <h4 class="font-semibold text-xl mb-2">Cooperation</h4>
+                <p class="text-gray-600 mb-4">
+                    Anda dapat menyumbangkan sebagian dari uang anda di fitur ini </p>
+                </p>
+                <a href="charity.php" class="text-[#141e43] hover:text-opacity-80 flex items-center">
+                    Join Now <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-[#141e43] text-white py-16" style="margin-top: 60px;">
+        <div class="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <div class="text-xl font-semibold">VillWork</div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <div class="flex space-x-4">
+                    <a href="#"><i class="ri-youtube-line text-2xl"></i></a>
+                    <a href="#"><i class="ri-instagram-line text-2xl"></i></a>
+                    <a href="#"><i class="ri-twitter-line text-2xl"></i></a>
                 </div>
-                <div class="bid">
-                    <p>0h 28m 1s</p>
-                    <a href="#">Place a Bid</a>
-                </div>
             </div>
-        </div>
-
-    </div>
-
-    <div class="view-more">
-        <button>View More</button>
-    </div>
-
-    <h2 class="separator">
-        Best Sellers
-    </h2>
-
-    <div class="sellers">
-        <div class="item">
-            <img src="assets/profile-1.png">
-            <div class="info">
-                <h4>Jhone D</h4>
-                <p>15.2K</p>
+            <div class="space-y-4">
+                <h4 class="font-semibold text-lg">Company</h4>
+                <a href="#" class="block">Business</a>
+                <a href="#" class="block">Partnership</a>
+                <a href="#" class="block">Network</a>
             </div>
-        </div>
-        <div class="item">
-            <img src="assets/profile-2.png">
-            <div class="info">
-                <h4>Gregory B</h4>
-                <p>12.7K</p>
+            <div class="space-y-4">
+                <h4 class="font-semibold text-lg">About Us</h4>
+                <a href="#" class="block">Blogs</a>
+                <a href="#" class="block">Channels</a>
+                <a href="#" class="block">Sponsors</a>
             </div>
-        </div>
-        <div class="item">
-            <img src="assets/profile-3.png">
-            <div class="info">
-                <h4>Stephen E</h4>
-                <p>7.9K</p>
+            <div class="space-y-4">
+                <h4 class="font-semibold text-lg">Contact</h4>
+                <a href="#" class="block">Contact Us</a>
+                <a href="#" class="block">Privacy Policy</a>
+                <a href="#" class="block">Terms & Conditions</a>
             </div>
-        </div>
-        <div class="item">
-            <img src="assets/profile-4.png">
-            <div class="info">
-                <h4>Russell M</h4>
-                <p>4.2K</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <h3>Create, Explore & Collect Abstract NFTs</h3>
-        <div class="right">
-            <div class="links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cooperation</a>
-                <a href="#">Sponsorship</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <div class="social">
-                <i class='bx bxl-instagram'></i>
-                <i class='bx bxl-facebook-square'></i>
-                <i class='bx bxl-github'></i>
-            </div>
-            <p>Copyright © 2024 AsmrProg, All Rights Reserved.</p>
         </div>
     </footer>
+
+    <div class="bg-[#141e43] text-center py-4 text-white">
+        Copyright © 2023 AsmrProg Channel. All Rights Reserved.
+    </div>
 
 </body>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+    :root {
+        --header-height: 3.5rem;
+        --black-color: #141e43;
+        --black-color-light: rgb(25, 38, 83);
+        --black-color-lighten: #dde3f3;
+        --white-color: rgb(235, 235, 235);
+        --body-color: rgb(235, 235, 235);
+
+        --body-font: "Poppins", sans-serif;
+        --normal-font-size: 0.938rem;
+
+        --font-regular: 400;
+        --font-semi-bold: 600;
+
+        --z-tooltip: 10;
+        --z-fixed: 100;
+    }
+
+    @media screen and (min-width: 1024px) {
+        :root {
+            --normal-font-size: 1rem;
+        }
+    }
 
     * {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
-        font-family: 'Ubuntu', sans-serif;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul {
+        list-style: none;
     }
 
     a {
         text-decoration: none;
-        color: #000;
     }
 
-    img {
-        object-fit: cover;
+    .container {
+        max-width: 1120px;
+        margin-inline: 1.5rem;
     }
 
-    body {
-        background-color: #f1f1f1;
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--black-color);
+        box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
+        z-index: var(--z-fixed);
     }
 
-    nav {
-        padding: 0 80px;
+    .nav {
+        height: var(--header-height);
+    }
+
+    .nav__logo,
+    .nav__burger,
+    .nav__close {
+        color: var(--white-color);
+    }
+
+    .nav__data {
+        height: 100%;
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        height: 80px;
+        align-items: center;
     }
 
-    nav a.logo {
-        font-size: 33px;
-        color: #0f2182;
-        font-weight: 600;
+    .nav__logo {
+        display: inline-flex;
+        align-items: center;
+        column-gap: 0.25rem;
+        font-weight: var(--font-semi-bold);
     }
 
-    nav .links a:not(:last-child) {
-        margin-right: 20px;
+    .nav__logo i {
+        font-weight: initial;
+        font-size: 1.25rem;
     }
 
-    nav .login button {
-        padding: 8px 14px;
-        border: none;
+    .nav__toggle {
+        position: relative;
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav__burger,
+    .nav__close {
+        position: absolute;
+        width: max-content;
+        height: max-content;
+        inset: 0;
+        margin: auto;
+        font-size: 1.25rem;
         cursor: pointer;
-        background-color: transparent;
+        transition: opacity 0.1s, transform 0.4s;
     }
 
-    nav .login button.signup {
-        background-color: #000;
-        color: #fff;
-        border-radius: 4px;
-        margin-right: 14px;
+    .nav__close {
+        opacity: 0;
     }
 
-    .konten_utama {
-        padding: 0 80px;
-        height: calc(100vh - 80px);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    @media screen and (max-width: 1118px) {
+        .nav__menu {
+            position: absolute;
+            left: 0;
+            top: 2.5rem;
+            width: 100%;
+            height: calc(100vh - 3.5rem);
+            overflow: auto;
+            pointer-events: none;
+            opacity: 0;
+            transition: top 0.4s, opacity 0.3s;
+        }
+
+        .nav__menu::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .nav__list {
+            background-color: var(--black-color);
+            padding-top: 1rem;
+        }
     }
 
-    .konten_utama .left {
-        width: 700px;
-    }
-
-    .konten_utama .left h1 {
-        font-size: 80px;
-    }
-
-    .konten_utama .left h1 span {
-        color: #0f2182;
-    }
-
-    .konten_utama .left p {
-        margin: 40px 0;
-        color: #777;
-    }
-
-    .konten_utama .left a {
-        display: flex;
-        align-items: center;
-        background: #000;
-        width: 200px;
-        padding: 8px;
-        border-radius: 60px;
-    }
-
-    .konten_utama .left a i {
-        background-color: #fff;
-        font-size: 24px;
-        border-radius: 50%;
-        padding: 8px;
-    }
-
-    .konten_utama .left a span {
-        color: #fff;
-        margin-left: 10px;
-    }
-
-    .konten_utama img {
-        width: 600px;
-    }
-
-    h2.separator {
-        padding: 0 80px;
-        font-size: 40px;
-        margin-top: 40px;
-    }
-
-    .sell-nft {
-        padding: 0 80px;
-        margin: 50px 0 80px;
+    .nav__link {
+        color: var(--white-color);
+        background-color: var(--black-color);
+        font-weight: var(--font-semi-bold);
+        padding: 1.25rem 1.5rem;
         display: flex;
         justify-content: space-between;
-        gap: 30px;
-    }
-
-    .sell-nft .item,
-    .nft-shop .nft-list .item {
-        padding: 20px;
-        background: #fff;
-        border-radius: 18px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .sell-nft .item:hover,
-    .nft-shop .nft-list .item:hover,
-    .sellers .item:hover {
-        box-shadow: none;
-    }
-
-    .sell-nft .item .konten_utama {
-        display: flex;
         align-items: center;
-        gap: 10px;
+        transition: background-color 0.3s;
     }
 
-    .sell-nft .item .konten_utama i {
-        font-size: 40px;
+    .nav__link:hover {
+        background-color: var(--black-color-light);
     }
 
-    .sell-nft .item .konten_utama h5 {
-        font-size: 17px;
+    .show-menu {
+        opacity: 1;
+        top: 3.5rem;
+        pointer-events: initial;
     }
 
-    .sell-nft .item p {
-        margin-top: 10px;
-        padding: 0 4px;
+    .show-icon .nav__burger {
+        opacity: 0;
+        transform: rotate(90deg);
     }
 
-    .nft-shop {
-        padding: 0 80px;
-        margin-top: 30px;
+    .show-icon .nav__close {
+        opacity: 1;
+        transform: rotate(90deg);
     }
 
-    .nft-shop .category {
-        display: flex;
-        gap: 14px;
-    }
-
-    .nft-shop .category a {
-        background-color: #dfdcdc;
-        padding: 8px 14px;
-        font-size: 15px;
-        border-radius: 14px;
-        transition: all 0.3s ease;
-    }
-
-    .nft-shop .category a:hover {
-        color: #fff;
-        background-color: #0f2182;
-    }
-
-    .nft-shop .nft-list {
-        padding: 40px 0;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-    }
-
-    .nft-shop .nft-list .item img {
-        width: 280px;
-        height: 280px;
-        border-radius: 18px;
-    }
-
-    .nft-shop .nft-list .item .info {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid #edecec;
-    }
-
-    .nft-shop .nft-list .item .info h5 {
-        font-size: 18px;
-    }
-
-    .nft-shop .nft-list .item .info .btc {
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .nft-shop .nft-list .item .btc i {
-        font-size: 22px;
-        color: #304ffe;
-    }
-
-    .nft-shop .nft-list .item .btc p {
-        font-size: 12px;
-        color: #304ffe;
-    }
-
-    .nft-shop .nft-list .item .info>p {
-        font-size: 12px;
-        color: #989898;
-    }
-
-    .nft-shop .nft-list .item .bid {
-        padding: 14px 0 4px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .nft-shop .nft-list .item .bid p,
-    .nft-shop .nft-list .item .bid a {
-        background-color: #edecec;
-        padding: 6px 10px;
-        font-size: 13px;
-        border-radius: 10px;
-    }
-
-    .nft-shop .nft-list .item .bid a {
-        color: #304ffe;
-        background: transparent;
-        font-weight: bold;
-        transition: all 0.3s ease;
-    }
-
-    .nft-shop .nft-list .item .bid a:hover {
-        color: #fff;
-        background-color: #000;
-    }
-
-    .view-more {
-        margin: 10px 0 40px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .view-more button {
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        background: #dfdcdc;
-        border-radius: 10px;
+    .dropdown__item {
         cursor: pointer;
-        transition: all 0.3s ease;
     }
 
-    .view-more button:hover {
-        color: #fff;
-        background: #0f2182;
+    .dropdown__arrow {
+        font-size: 1.25rem;
+        font-weight: initial;
+        transition: transform 0.4s;
     }
 
-    .sellers {
-        padding: 0 80px;
-        margin: 40px 0 80px;
-        display: flex;
-        gap: 30px;
-    }
-
-    .sellers .item {
-        background: #fff;
+    .dropdown__link,
+    .dropdown__sublink {
+        padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+        color: var(--white-color);
+        background-color: var(--black-color-light);
         display: flex;
         align-items: center;
-        width: 25%;
-        gap: 14px;
-        padding: 14px;
-        border-radius: 18px;
-        cursor: pointer;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        column-gap: 0.5rem;
+        font-weight: var(--font-semi-bold);
+        transition: background-color 0.3s;
     }
 
-    .sellers .item img {
-        width: 64px;
+    .dropdown__link i,
+    .dropdown__sublink i {
+        font-size: 1.25rem;
+        font-weight: initial;
     }
 
-    .sellers .item .info p {
-        font-size: 14px;
-        margin-top: 8px;
+    .dropdown__link:hover,
+    .dropdown__sublink:hover {
+        background-color: var(--black-color);
     }
 
-    footer {
-        background-color: #000;
-        color: #fff;
-        padding: 100px 80px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .dropdown__menu,
+    .dropdown__submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
     }
 
-    footer h3 {
-        font-size: 48px;
+    .dropdown__item:hover .dropdown__menu,
+    .dropdown__subitem:hover>.dropdown__submenu {
+        max-height: 1000px;
+        transition: max-height 0.4s ease-in;
     }
 
-    footer .right {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 26px;
+    .dropdown__item:hover .dropdown__arrow {
+        transform: rotate(180deg);
     }
 
-    footer .right .links {
-        display: flex;
-        gap: 30px;
+    .dropdown__add {
+        margin-left: auto;
     }
 
-    footer .right .links a {
-        color: #989898;
-        transition: color 0.3s ease;
+    .dropdown__sublink {
+        background-color: var(--black-color-lighten);
     }
 
-    footer .right .links a:hover {
-        color: #fff;
+    @media screen and (max-width: 340px) {
+        .container {
+            margin-inline: 1rem;
+        }
+
+        .nav__link {
+            padding-inline: 1rem;
+        }
     }
 
-    footer .right .social {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    footer .right .social i {
-        font-size: 30px;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-
-    footer .right .social i:hover {
-        color: #304ffe;
-    }
-
-    footer .right p {
-        font-size: 13px;
-        color: #777;
-    }
-
-    @media screen and (max-width: 1400px) {
-
-        nav,
-        .konten_utama,
-        h2.separator,
-        .sell-nft,
-        .nft-shop,
-        .sellers {
-            padding: 0 40px;
+    @media screen and (min-width: 1118px) {
+        .container {
+            margin-inline: auto;
         }
 
-        .konten_utama .left h1 {
-            font-size: 60px;
+        .nav {
+            height: calc(var(--header-height) + 2rem);
+            display: flex;
+            justify-content: space-between;
         }
 
-        .konten_utama img {
-            width: 540px;
-        }
-
-        .nft-shop .nft-list .item img {
-            width: 220px;
-            height: 220px;
-        }
-
-        footer {
-            padding: 100px 40px;
-        }
-
-        footer h3 {
-            font-size: 38px;
-        }
-
-    }
-
-    @media screen and (max-width: 1200px) {
-
-        .konten_utama .left h1 {
-            font-size: 48px;
-        }
-
-        .konten_utama img {
-            width: 480px;
-        }
-
-        h2.separator {
-            font-size: 34px;
-        }
-
-        .sell-nft .item .konten_utama i {
-            font-size: 36px;
-        }
-
-        .sell-nft .item .konten_utama h5 {
-            font-size: 15px;
-        }
-
-        .sell-nft .item p {
-            font-size: 13px;
-        }
-
-        .nft-shop .nft-list {
-            flex-wrap: wrap;
-            row-gap: 30px;
-        }
-
-        .nft-shop .nft-list .item {
-            width: 48%;
-        }
-
-        .nft-shop .nft-list .item img {
-            width: 100%;
-            height: auto;
-        }
-
-        .sellers {
-            flex-wrap: wrap;
-        }
-
-        .sellers .item {
-            width: 48%;
-        }
-
-        footer .links a {
-            font-size: 15px;
-        }
-
-    }
-
-    @media screen and (max-width: 992px) {
-
-        nav a.logo {
-            font-size: 28px;
-        }
-
-        nav .links a {
-            font-size: 14px;
-        }
-
-        .konten_utama {
-            flex-direction: column-reverse;
-            height: auto;
-            margin-bottom: 60px;
-        }
-
-        .konten_utama .left {
-            width: 100%;
-        }
-
-        .konten_utama img {
-            width: 100%;
-        }
-
-        .sell-nft {
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .sell-nft .item {
-            width: 48%;
-        }
-
-        .sellers {
-            gap: 20px;
-        }
-
-        footer {
-            flex-direction: column;
-            padding: 60px 40px;
-        }
-
-        footer h3 {
-            margin-bottom: 40px;
-            font-size: 32px;
-        }
-
-        footer .right {
-            width: 100%;
-            align-items: center;
-        }
-
-    }
-
-    @media screen and (max-width: 768px) {
-
-        nav,
-        .konten_utama,
-        h2.separator,
-        .sell-nft,
-        .nft-shop,
-        .sellers {
-            padding: 0 20px;
-        }
-
-        nav a.logo {
+        .nav__toggle {
             display: none;
         }
 
-        nav .links a {
-            font-size: 12px;
+        .nav__list {
+            height: 100%;
+            display: flex;
+            column-gap: 3rem;
         }
 
-        nav .login button {
-            font-size: 12px;
-            padding: 6px 10px;
+        .nav__link {
+            height: 100%;
+            padding: 0;
+            justify-content: initial;
+            column-gap: 0.25rem;
         }
 
-        .konten_utama .left h1 {
-            font-size: 36px;
+        .nav__link:hover {
+            background-color: transparent;
         }
 
-        .konten_utama .left p {
-            font-size: 14px;
+        .dropdown__item,
+        .dropdown__subitem {
+            position: relative;
         }
 
-        .konten_utama .left a {
-            padding: 6px;
-            width: 160px;
-            font-size: 14px;
+        .dropdown__menu,
+        .dropdown__submenu {
+            max-height: initial;
+            overflow: initial;
+            position: absolute;
+            left: 0;
+            top: 6rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, top 0.3s;
         }
 
-        .konten_utama .left a i {
-            padding: 6px;
+        .dropdown__link,
+        .dropdown__sublink {
+            padding-inline: 1rem 3.5rem;
         }
 
-        h2.separator {
-            font-size: 30px;
+        .dropdown__subitem .dropdown__link {
+            padding-inline: 1rem;
         }
 
-        footer {
-            padding: 40px 20px;
+        .dropdown__submenu {
+            position: absolute;
+            left: 100%;
+            top: 0.5rem;
         }
 
-    }
-
-    @media screen and (max-width: 576px) {
-
-        .konten_utama .left h1 {
-            font-size: 30px;
+        .dropdown__item:hover .dropdown__menu {
+            opacity: 1;
+            top: 5.5rem;
+            pointer-events: initial;
+            transition: top 0.3s;
         }
-
-        .sell-nft .item {
-            width: 100%;
-        }
-
-        .nft-shop .nft-list .item,
-        .sellers .item {
-            width: 47%;
-        }
-
-        .nft-shop .category a {
-            font-size: 13px;
-        }
-
     }
 </style>
 

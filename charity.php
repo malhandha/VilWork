@@ -734,7 +734,6 @@ while ($row = $chartResult->fetch_assoc()) {
             document.getElementById("detailModal").classList.remove("flex");
         }
 
-        // ChartJS setup
         const ctx = document.getElementById('donasiChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',

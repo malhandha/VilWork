@@ -25,24 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-// $query = "SELECT * FROM charity ORDER BY tanggal_donasi DESC";
-// $result = $conn->query($query);
-
-$labels = [];
-$dataGaji = [];
-
-$sql = "SELECT judul_pekerjaan, gaji_max FROM lowongan";
-$result = $conn->query($sql);
-
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['judul_pekerjaan'];
-        $dataGaji[] = (int)$row['gaji_max'];
-    }
-} else {
-    echo "Query error: " . $conn->error;
-}
-
+$query = "SELECT * FROM charity ORDER BY tanggal_donasi DESC";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +34,10 @@ if ($result) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Publish Lowongan | VillWork</title>
+    <title>Donasi Charity | VillWork</title>
     <link rel="icon" type="image/png" href="foto/logo_baru.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body class="bg-gray-100 min-h-screen">
@@ -175,11 +157,11 @@ if ($result) {
                 <option value="Virtual Account">Virtual Account</option>
             </select> -->
             <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded col-span-1 md:col-span-2">
-                Publish Lowongan
+                Kirim Donasi
             </button>
         </form>
 
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Data Lowongan</h2>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Data Donasi</h2>
 
         <?php
 $query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
@@ -217,25 +199,12 @@ $result = $conn->query($query);
         <?php else: ?>
             <div class="text-gray-600">Belum ada data donasi.</div>
         <?php endif; ?> -->
-
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Grafik Lowongan per Tanggal</h2>
-        <div class="bg-white p-6 rounded-lg shadow mb-10">
-            <canvas id="lowonganChart" height="100"></canvas>
-        </div>
-        
-        <div class="text-center mb-4">
-    <a href="export_lowongan.php" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
-        Download Laporan CSV
-    </a>
-</div>
-
-
     </main>
 
-    <!-- <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
+    <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
             <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl">&times;</button>
-            <h3 class="text-xl font-bold mb-4">Detail Lowongan</h3>
+            <h3 class="text-xl font-bold mb-4">Detail Donasi</h3>
             <p><strong>Nama:</strong> <span id="modalNama"></span></p>
             <p><strong>Email:</strong> <span id="modalEmail"></span></p>
             <p><strong>Telepon:</strong> <span id="modalTelepon"></span></p>
@@ -262,68 +231,7 @@ $result = $conn->query($query);
             document.getElementById("detailModal").classList.add("hidden");
             document.getElementById("detailModal").classList.remove("flex");
         }
-    </script> -->
-    <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
-    <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
-        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl">&times;</button>
-        <h3 class="text-xl font-bold mb-4">Detail Lowongan</h3>
-        <p><strong>Perusahaan:</strong> <span id="modalPerusahaan"></span></p>
-        <p><strong>Judul Pekerjaan:</strong> <span id="modalJudul"></span></p>
-        <p><strong>Deskripsi:</strong> <span id="modalDeskripsi"></span></p>
-        <p><strong>Lokasi:</strong> <span id="modalLokasi"></span></p>
-        <p><strong>Gaji:</strong> Rp<span id="modalGaji"></span></p>
-        <p><strong>Tanggal Berakhir:</strong> <span id="modalTanggal"></span></p>
-    </div>
-</div>
-
-<script>
-    function showDetail(data) {
-        document.getElementById("modalPerusahaan").innerText = data.id_perusahaan;
-        document.getElementById("modalJudul").innerText = data.judul_pekerjaan;
-        document.getElementById("modalDeskripsi").innerText = data.deskripsi;
-        document.getElementById("modalLokasi").innerText = data.lokasi;
-        document.getElementById("modalGaji").innerText = 
-            `${parseFloat(data.gaji_min).toLocaleString('id-ID')} - ${parseFloat(data.gaji_max).toLocaleString('id-ID')}`;
-        document.getElementById("modalTanggal").innerText = new Date(data.tanggal_berakhir).toLocaleDateString('id-ID');
-
-        document.getElementById("detailModal").classList.remove("hidden");
-        document.getElementById("detailModal").classList.add("flex");
-    }
-
-    function closeModal() {
-        document.getElementById("detailModal").classList.add("hidden");
-        document.getElementById("detailModal").classList.remove("flex");
-    }
-
-
-    const ctx = document.getElementById('lowonganChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?= json_encode($labels); ?>,
-            datasets: [{
-                label: 'Gaji Maksimum (Rp)',
-                data: <?= json_encode($dataGaji); ?>,
-                backgroundColor: '#1e3a8a'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return 'Rp ' + value.toLocaleString('id-ID');
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-</script>
-
+    </script>
 
 </body>
 
@@ -360,13 +268,12 @@ $result = $conn->query($query);
 
     body {
         margin: 0;
-        padding-top: 80px;
         background: var(--body-color);
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
-        overflow-y: auto;
+        height: 120vh;
+        overflow: auto;
         font-family: var(--body-font);
         font-size: var(--normal-font-size);
     }
