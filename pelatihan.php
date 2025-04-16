@@ -74,7 +74,7 @@
                      </li>
 
                      <li>
-                        <a href="#" class="dropdown__link">
+                        <a href="publish_lowongan_baru.php" class="dropdown__link">
                            <i class="ri-lock-line"></i> Tambah Unggahan
                         </a>
                      </li>
