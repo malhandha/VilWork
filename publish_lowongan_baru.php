@@ -45,10 +45,10 @@ $result = $conn->query($query);
     <header class="header">
         <nav class="nav container">
             <div class="nav__data">
-                <a href="dashboard.php" class="nav__logo">
-                    <img src="foto/logo_baru.png" alt="" class="logo" height="22px" width="22px">
-                    <p>VillWork</p>
+                <a href="#" class="nav__logo">
+                    VillWork
                 </a>
+
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="ri-menu-line nav__burger"></i>
                     <i class="ri-close-line nav__close"></i>
@@ -57,7 +57,7 @@ $result = $conn->query($query);
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li><a href="#" class="nav__link">Home</a></li>
+                    <li><a href="dashboard.php" class="nav__link">Home</a></li>
 
                     <li class="dropdown__item">
                         <div class="nav__link">
@@ -67,8 +67,7 @@ $result = $conn->query($query);
                         <ul class="dropdown__menu">
                             <li>
                                 <a href="#" class="dropdown__link">
-                                    <i class="ri-pie-chart-line"></i> 
-                                    Pekerjaan Terdekat
+                                    <i class="ri-pie-chart-line"></i> Pekerjaan Terdekat
                                 </a>
                             </li>
 
@@ -80,31 +79,8 @@ $result = $conn->query($query);
                         </ul>
                     </li>
 
-                    <li class="dropdown__item">
-                        <div class="nav__link">
-                            Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                        </div>
+                    <li><a href="publish_lowongan_baru.php" class="nav__link">Profile</a></li>
 
-                        <ul class="dropdown__menu">
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-user-line"></i> Postingan Saya
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-lock-line"></i> Tambah Unggahan
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-message-3-line"></i> Riwayat
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="dropdown__item">
                         <div class="nav__link">
                             Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -130,8 +106,9 @@ $result = $conn->query($query);
                             </li>
                         </ul>
                     </li>
-                    <li><a href="charity.php" class="nav__link">Charity</a></li>
-                    </li>
+
+                    <li><a href="charity.php" class="nav__link">Profile</a></li>
+
                     <li><a href="profile.php" class="nav__link">Profile</a></li>
                 </ul>
             </div>
@@ -144,8 +121,8 @@ $result = $conn->query($query);
         <form method="post" class="bg-white p-6 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
             <input name="id_perusahaan" required placeholder="ID Perusahaan" class="border p-2 rounded" />
             <input name="judul_pekerjaan" required placeholder="Judul Pekerjaan" class="border p-2 rounded" />
-            <textarea name="deskripsi" rows="4" required placeholder="Deskripsi pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2" ></textarea>
-            <input name="lokasi"  required placeholder="Lokasi Pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2" />
+            <textarea name="deskripsi" rows="4" required placeholder="Deskripsi pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2"></textarea>
+            <input name="lokasi" required placeholder="Lokasi Pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2" />
             <input name="gaji_min" type="number" required placeholder="Gaji Minimal" class="border p-2 rounded">
             <input name="gaji_max" type="number" required placeholder="Gaji Maximal" class="border p-2 rounded">
             <input type="date" name="tanggal_berakhir" required class="border p-2 rounded">
@@ -164,25 +141,25 @@ $result = $conn->query($query);
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Riwayat Upload Pekerjaan</h2>
 
         <?php
-$query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
-$result = $conn->query($query);
-?>
+        $query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
+        $result = $conn->query($query);
+        ?>
 
-<?php if ($result->num_rows > 0): ?>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer"
-                onclick='showDetail(<?= json_encode($row); ?>)'>
-                <h3 class="font-bold text-blue-900"><?= htmlspecialchars($row['judul_pekerjaan']); ?></h3>
-                <p class="text-gray-600 text-sm"><?= htmlspecialchars($row['lokasi']); ?></p>
-                <p class="text-green-700 font-semibold text-sm">Rp<?= number_format($row['gaji_min'], 0, ',', '.'); ?> - Rp<?= number_format($row['gaji_max'], 0, ',', '.'); ?></p>
-                <p class="text-gray-500 text-sm"><?= htmlspecialchars($row['tanggal_berakhir']); ?></p>
+        <?php if ($result->num_rows > 0): ?>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer"
+                        onclick='showDetail(<?= json_encode($row); ?>)'>
+                        <h3 class="font-bold text-blue-900"><?= htmlspecialchars($row['judul_pekerjaan']); ?></h3>
+                        <p class="text-gray-600 text-sm"><?= htmlspecialchars($row['lokasi']); ?></p>
+                        <p class="text-green-700 font-semibold text-sm">Rp<?= number_format($row['gaji_min'], 0, ',', '.'); ?> - Rp<?= number_format($row['gaji_max'], 0, ',', '.'); ?></p>
+                        <p class="text-gray-500 text-sm"><?= htmlspecialchars($row['tanggal_berakhir']); ?></p>
+                    </div>
+                <?php endwhile; ?>
             </div>
-        <?php endwhile; ?>
-    </div>
-<?php else: ?>
-    <div class="text-gray-600">Belum ada lowongan.</div>
-<?php endif; ?>
+        <?php else: ?>
+            <div class="text-gray-600">Belum ada lowongan.</div>
+        <?php endif; ?>
 
 
         <!-- <?php if ($result->num_rows > 0): ?>
