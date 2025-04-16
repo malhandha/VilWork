@@ -1,23 +1,24 @@
-fgfgfg<?php
-session_start();
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "db_makanyuk";
+<?php
+        session_start();
+        $host = "localhost";
+        $user = "root";
+        $password = "";
+        $database = "VillWork";
 
-$conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
+        $conn = new mysqli($host, $user, $password, $database);
+        if ($conn->connect_error) {
+            die("Koneksi gagal: " . $conn->connect_error);
+        }
 
-$query =    "SELECT donasi.*, pengguna.nama_user
+        $query =    "SELECT donasi.*, pengguna.nama_user
             FROM donasi
             JOIN pengguna ON donasi.id_user = pengguna.id_user";
-$result = $conn->query($query);
-?>
+        $result = $conn->query($query);
+        ?>
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Donasi | MakanYuk!</title>
@@ -28,6 +29,7 @@ $result = $conn->query($query);
         }
     </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen">
 
     <!-- Header -->
@@ -103,4 +105,5 @@ $result = $conn->query($query);
     </script>
 
 </body>
+
 </html>

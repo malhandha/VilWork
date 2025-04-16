@@ -503,7 +503,7 @@ $conn->close();
       </div>
       <div class="form-group">
         <label class="form-label">Nomor Telepon</label>
-        <input type="tel" name="nomor_telepon" class="form-input" required>
+        <input type="number" name="nomor_telepon" class="form-input" required>
       </div>
       <div class="form-group">
         <label class="form-label">Email</label>
@@ -522,6 +522,7 @@ $conn->close();
 .form-container {
   max-width: 500px;
   margin: 150px auto; 
+  position: fixed;
   padding: 30px 60px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -553,6 +554,8 @@ $conn->close();
   font-weight: 500;
   color: #555;
 }
+
+.menu{}
 
 .form-input {
   width: 100%;
