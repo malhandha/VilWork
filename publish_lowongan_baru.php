@@ -161,7 +161,7 @@ $result = $conn->query($query);
             </button>
         </form>
 
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Data Donasi</h2>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Riwayat Upload Pekerjaan</h2>
 
         <?php
 $query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
