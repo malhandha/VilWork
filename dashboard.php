@@ -569,6 +569,7 @@
         font-size: 13px;
         color: #777;
     }
+    
 
     @media screen and (max-width: 1400px) {
 
@@ -601,6 +602,7 @@
         footer h3 {
             font-size: 38px;
         }
+
 
     }
 
