@@ -248,7 +248,7 @@ $result = $conn->query($query);
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 120vh;
+        height: 100%;
         overflow: auto;
         font-family: var(--body-font);
         font-size: var(--normal-font-size);
