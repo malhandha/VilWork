@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <title>Responsive NFT Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="icon" type="image/png" href="foto/logo_baru.png">
 </head>
 
 <body class="bg-gray-100 text-gray-900">
@@ -151,7 +151,7 @@
         <div class="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="space-y-4">
                 <div class="text-xl font-semibold">VillWork</div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>Sebuah Platform untuk mencari kerja dan meningkatkan skill</p>
                 <div class="flex space-x-4">
                     <a href="#"><i class="ri-youtube-line text-2xl"></i></a>
                     <a href="#"><i class="ri-instagram-line text-2xl"></i></a>
@@ -166,15 +166,13 @@
             </div>
             <div class="space-y-4">
                 <h4 class="font-semibold text-lg">About Us</h4>
-                <a href="#" class="block">Blogs</a>
-                <a href="#" class="block">Channels</a>
-                <a href="#" class="block">Sponsors</a>
+                <a href="#" class="block">@Alaya_Team</a>
             </div>
             <div class="space-y-4">
                 <h4 class="font-semibold text-lg">Contact</h4>
-                <a href="#" class="block">Contact Us</a>
-                <a href="#" class="block">Privacy Policy</a>
-                <a href="#" class="block">Terms & Conditions</a>
+                <a href="#" class="block">@azztqy</a>
+                <a href="#" class="block">@malhandha</a>
+                <a href="#" class="block">@muhamadachsani</a>
             </div>
         </div>
     </footer>

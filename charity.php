@@ -30,9 +30,9 @@ $query = "SELECT * FROM charity ORDER BY tanggal_donasi DESC";
 $result = $conn->query($query);
 
 $chartQuery = "SELECT DATE(tanggal_donasi) AS tanggal, SUM(nominal_donasi) AS total_donasi 
-               FROM charity 
-               GROUP BY DATE(tanggal_donasi) 
-               ORDER BY tanggal ASC";
+            FROM charity 
+            GROUP BY DATE(tanggal_donasi) 
+            ORDER BY tanggal ASC";
 $chartResult = $conn->query($chartQuery);
 
 $labels = [];
@@ -185,6 +185,7 @@ while ($row = $chartResult->fetch_assoc()) {
             <p><strong>Tanggal:</strong> <span id="modalTanggal"></span></p>
         </div>
     </div>
+
 
     <style>
         :root {

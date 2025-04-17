@@ -133,7 +133,7 @@ $result = $conn->query($query);
                 <option value="Virtual Account">Virtual Account</option>
             </select> -->
             <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded col-span-1 md:col-span-2">
-                Kirim Donasi
+                Publish Lowongan
             </button>
         </form>
 
