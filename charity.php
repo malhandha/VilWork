@@ -30,9 +30,9 @@ $query = "SELECT * FROM charity ORDER BY tanggal_donasi DESC";
 $result = $conn->query($query);
 
 $chartQuery = "SELECT DATE(tanggal_donasi) AS tanggal, SUM(nominal_donasi) AS total_donasi 
-               FROM charity 
-               GROUP BY DATE(tanggal_donasi) 
-               ORDER BY tanggal ASC";
+            FROM charity 
+            GROUP BY DATE(tanggal_donasi) 
+            ORDER BY tanggal ASC";
 $chartResult = $conn->query($chartQuery);
 
 $labels = [];
@@ -49,7 +49,7 @@ while ($row = $chartResult->fetch_assoc()) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Donasi Charity | VillWork</title>
+    <title>Charity</title>
     <link rel="icon" type="image/png" href="foto/logo_baru.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,7 +61,7 @@ while ($row = $chartResult->fetch_assoc()) {
     <header class="header">
         <nav class="nav container">
             <div class="nav__data">
-                <a href="#" class="nav__logo">
+                <a href="dashboard.php" class="nav__logo">
                     VillWork
                 </a>
 
@@ -73,7 +73,7 @@ while ($row = $chartResult->fetch_assoc()) {
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li><a href="#" class="nav__link">Home</a></li>
+                    <li><a href="dashboard.php" class="nav__link">Home</a></li>
 
                     <li class="dropdown__item">
                         <div class="nav__link">
@@ -95,31 +95,8 @@ while ($row = $chartResult->fetch_assoc()) {
                         </ul>
                     </li>
 
-                    <li class="dropdown__item">
-                        <div class="nav__link">
-                            Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                        </div>
+                    <li><a href="publish_lowongan_baru.php" class="nav__link">Publish Lowongan</a></li>
 
-                        <ul class="dropdown__menu">
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-user-line"></i> Postingan Saya
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-lock-line"></i> Tambah Unggahan
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-message-3-line"></i> Riwayat
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="dropdown__item">
                         <div class="nav__link">
                             Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -146,33 +123,9 @@ while ($row = $chartResult->fetch_assoc()) {
                         </ul>
                     </li>
 
-                    <li class="dropdown__item">
-                        <div class="nav__link">
-                            Charity <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                        </div>
+                    <li><a href="charity.php" class="nav__link">Charity</a></li>
 
-                        <ul class="dropdown__menu">
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-user-line"></i> Berbagi
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-lock-line"></i> Riwayat
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown__link">
-                                    <i class="ri-message-3-line"></i> Messages
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li><a href="#" class="nav__link">Profile</a></li>
+                    <li><a href="profile.php" class="nav__link">Profile</a></li>
                 </ul>
             </div>
         </nav>
@@ -232,6 +185,9 @@ while ($row = $chartResult->fetch_assoc()) {
             <p><strong>Tanggal:</strong> <span id="modalTanggal"></span></p>
         </div>
     </div>
+
+    
+
 
     <style>
         :root {
@@ -734,7 +690,6 @@ while ($row = $chartResult->fetch_assoc()) {
             document.getElementById("detailModal").classList.remove("flex");
         }
 
-        // ChartJS setup
         const ctx = document.getElementById('donasiChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',

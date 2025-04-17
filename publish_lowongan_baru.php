@@ -25,24 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-// $query = "SELECT * FROM charity ORDER BY tanggal_donasi DESC";
-// $result = $conn->query($query);
-
-$labels = [];
-$dataGaji = [];
-
-$sql = "SELECT judul_pekerjaan, gaji_max FROM lowongan";
-$result = $conn->query($sql);
-
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['judul_pekerjaan'];
-        $dataGaji[] = (int)$row['gaji_max'];
-    }
-} else {
-    echo "Query error: " . $conn->error;
-}
-
+$query = "SELECT * FROM charity ORDER BY tanggal_donasi DESC";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +69,7 @@ if ($result) {
                         <ul class="dropdown__menu">
                             <li>
                                 <a href="#" class="dropdown__link">
-                                    <i class="ri-pie-chart-line"></i> 
+                                    <i class="ri-pie-chart-line"></i>
                                     Pekerjaan Terdekat
                                 </a>
                             </li>
@@ -162,8 +146,8 @@ if ($result) {
         <form method="post" class="bg-white p-6 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
             <input name="id_perusahaan" required placeholder="ID Perusahaan" class="border p-2 rounded" />
             <input name="judul_pekerjaan" required placeholder="Judul Pekerjaan" class="border p-2 rounded" />
-            <textarea name="deskripsi" rows="4" required placeholder="Deskripsi pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2" ></textarea>
-            <input name="lokasi"  required placeholder="Lokasi Pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2" />
+            <textarea name="deskripsi" rows="4" required placeholder="Deskripsi pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2"></textarea>
+            <input name="lokasi" required placeholder="Lokasi Pekerjaan" class="border p-2 rounded col-span-1 md:col-span-2" />
             <input name="gaji_min" type="number" required placeholder="Gaji Minimal" class="border p-2 rounded">
             <input name="gaji_max" type="number" required placeholder="Gaji Maximal" class="border p-2 rounded">
             <input type="date" name="tanggal_berakhir" required class="border p-2 rounded">
@@ -182,25 +166,25 @@ if ($result) {
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Data Lowongan</h2>
 
         <?php
-$query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
-$result = $conn->query($query);
-?>
+        $query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
+        $result = $conn->query($query);
+        ?>
 
-<?php if ($result->num_rows > 0): ?>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer"
-                onclick='showDetail(<?= json_encode($row); ?>)'>
-                <h3 class="font-bold text-blue-900"><?= htmlspecialchars($row['judul_pekerjaan']); ?></h3>
-                <p class="text-gray-600 text-sm"><?= htmlspecialchars($row['lokasi']); ?></p>
-                <p class="text-green-700 font-semibold text-sm">Rp<?= number_format($row['gaji_min'], 0, ',', '.'); ?> - Rp<?= number_format($row['gaji_max'], 0, ',', '.'); ?></p>
-                <p class="text-gray-500 text-sm"><?= htmlspecialchars($row['tanggal_berakhir']); ?></p>
+        <?php if ($result->num_rows > 0): ?>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="bg-white rounded-lg p-4 shadow hover:shadow-lg cursor-pointer"
+                        onclick='showDetail(<?= json_encode($row); ?>)'>
+                        <h3 class="font-bold text-blue-900"><?= htmlspecialchars($row['judul_pekerjaan']); ?></h3>
+                        <p class="text-gray-600 text-sm"><?= htmlspecialchars($row['lokasi']); ?></p>
+                        <p class="text-green-700 font-semibold text-sm">Rp<?= number_format($row['gaji_min'], 0, ',', '.'); ?> - Rp<?= number_format($row['gaji_max'], 0, ',', '.'); ?></p>
+                        <p class="text-gray-500 text-sm"><?= htmlspecialchars($row['tanggal_berakhir']); ?></p>
+                    </div>
+                <?php endwhile; ?>
             </div>
-        <?php endwhile; ?>
-    </div>
-<?php else: ?>
-    <div class="text-gray-600">Belum ada lowongan.</div>
-<?php endif; ?>
+        <?php else: ?>
+            <div class="text-gray-600">Belum ada lowongan.</div>
+        <?php endif; ?>
 
 
         <!-- <?php if ($result->num_rows > 0): ?>
@@ -222,12 +206,12 @@ $result = $conn->query($query);
         <div class="bg-white p-6 rounded-lg shadow mb-10">
             <canvas id="lowonganChart" height="100"></canvas>
         </div>
-        
+
         <div class="text-center mb-4">
-    <a href="export_lowongan.php" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
-        Download Laporan CSV
-    </a>
-</div>
+            <a href="export_lowongan.php" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
+                Download Laporan CSV
+            </a>
+        </div>
 
 
     </main>
@@ -264,65 +248,68 @@ $result = $conn->query($query);
         }
     </script> -->
     <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
-    <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
-        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl">&times;</button>
-        <h3 class="text-xl font-bold mb-4">Detail Lowongan</h3>
-        <p><strong>Perusahaan:</strong> <span id="modalPerusahaan"></span></p>
-        <p><strong>Judul Pekerjaan:</strong> <span id="modalJudul"></span></p>
-        <p><strong>Deskripsi:</strong> <span id="modalDeskripsi"></span></p>
-        <p><strong>Lokasi:</strong> <span id="modalLokasi"></span></p>
-        <p><strong>Gaji:</strong> Rp<span id="modalGaji"></span></p>
-        <p><strong>Tanggal Berakhir:</strong> <span id="modalTanggal"></span></p>
+        <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
+            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl">&times;</button>
+            <h3 class="text-xl font-bold mb-4">Detail Lowongan</h3>
+            <p><strong>Perusahaan:</strong> <span id="modalPerusahaan"></span></p>
+            <p><strong>Judul Pekerjaan:</strong> <span id="modalJudul"></span></p>
+            <p><strong>Deskripsi:</strong> <span id="modalDeskripsi"></span></p>
+            <p><strong>Lokasi:</strong> <span id="modalLokasi"></span></p>
+            <p><strong>Gaji:</strong> Rp<span id="modalGaji"></span></p>
+            <p><strong>Tanggal Berakhir:</strong> <span id="modalTanggal"></span></p>
+        </div>
     </div>
-</div>
 
-<script>
-    function showDetail(data) {
-        document.getElementById("modalPerusahaan").innerText = data.id_perusahaan;
-        document.getElementById("modalJudul").innerText = data.judul_pekerjaan;
-        document.getElementById("modalDeskripsi").innerText = data.deskripsi;
-        document.getElementById("modalLokasi").innerText = data.lokasi;
-        document.getElementById("modalGaji").innerText = 
-            `${parseFloat(data.gaji_min).toLocaleString('id-ID')} - ${parseFloat(data.gaji_max).toLocaleString('id-ID')}`;
-        document.getElementById("modalTanggal").innerText = new Date(data.tanggal_berakhir).toLocaleDateString('id-ID');
+    <script>
+        function showDetail(data) {
+            document.getElementById("modalPerusahaan").innerText = data.id_perusahaan;
+            document.getElementById("modalJudul").innerText = data.judul_pekerjaan;
+            document.getElementById("modalDeskripsi").innerText = data.deskripsi;
+            document.getElementById("modalLokasi").innerText = data.lokasi;
+            document.getElementById("modalGaji").innerText =
+                $ {
+                    parseFloat(data.gaji_min).toLocaleString('id-ID')
+                } - $ {
+                    parseFloat(data.gaji_max).toLocaleString('id-ID')
+                };
+            document.getElementById("modalTanggal").innerText = new Date(data.tanggal_berakhir).toLocaleDateString('id-ID');
 
-        document.getElementById("detailModal").classList.remove("hidden");
-        document.getElementById("detailModal").classList.add("flex");
-    }
+            document.getElementById("detailModal").classList.remove("hidden");
+            document.getElementById("detailModal").classList.add("flex");
+        }
 
-    function closeModal() {
-        document.getElementById("detailModal").classList.add("hidden");
-        document.getElementById("detailModal").classList.remove("flex");
-    }
+        function closeModal() {
+            document.getElementById("detailModal").classList.add("hidden");
+            document.getElementById("detailModal").classList.remove("flex");
+        }
 
 
-    const ctx = document.getElementById('lowonganChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?= json_encode($labels); ?>,
-            datasets: [{
-                label: 'Gaji Maksimum (Rp)',
-                data: <?= json_encode($dataGaji); ?>,
-                backgroundColor: '#1e3a8a'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return 'Rp ' + value.toLocaleString('id-ID');
+        const ctx = document.getElementById('lowonganChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($labels); ?>,
+                datasets: [{
+                    label: 'Gaji Maksimum (Rp)',
+                    data: <?= json_encode($dataGaji); ?>,
+                    backgroundColor: '#1e3a8a'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rp ' + value.toLocaleString('id-ID');
+                            }
                         }
                     }
                 }
             }
-        }
-    });
-
-</script>
+        });
+    </script>
 
 
 </body>
@@ -540,13 +527,13 @@ $result = $conn->query($query);
         transition: max-height 0.4s ease-out;
     }
 
-    .dropdown__item:hover .dropdown__menu,
-    .dropdown__subitem:hover>.dropdown__submenu {
+    .dropdown_item:hover .dropdown_menu,
+    .dropdown_subitem:hover>.dropdown_submenu {
         max-height: 1000px;
         transition: max-height 0.4s ease-in;
     }
 
-    .dropdown__item:hover .dropdown__arrow {
+    .dropdown_item:hover .dropdown_arrow {
         transform: rotate(180deg);
     }
 
@@ -622,7 +609,7 @@ $result = $conn->query($query);
             padding-inline: 1rem 3.5rem;
         }
 
-        .dropdown__subitem .dropdown__link {
+        .dropdown_subitem .dropdown_link {
             padding-inline: 1rem;
         }
 
@@ -632,7 +619,7 @@ $result = $conn->query($query);
             top: 0.5rem;
         }
 
-        .dropdown__item:hover .dropdown__menu {
+        .dropdown_item:hover .dropdown_menu {
             opacity: 1;
             top: 5.5rem;
             pointer-events: initial;

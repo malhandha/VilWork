@@ -283,7 +283,7 @@
        
 
         <button type="submit" class="submit-btn">Register</button>
-        <p class="login-text">Already have an account? <a href="#" onclick="showLogin() ">Login</a></p>
+        <p class="login-text">Already have an account? <a href="dashboard.php" onclick="showLogin() ">Login</a></p>
       </form>
     </div>
   </section>

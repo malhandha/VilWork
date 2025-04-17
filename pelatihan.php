@@ -27,7 +27,7 @@
    <header class="header">
       <nav class="nav container">
          <div class="nav__data">
-            <a href="#" class="nav__logo">
+            <a href="dashboard.php" class="nav__logo">
                VillWork
             </a>
 
@@ -39,7 +39,7 @@
 
          <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
-               <li><a href="#" class="nav__link">Home</a></li>
+               <li><a href="dashboard.php" class="nav__link">Home</a></li>
 
                <li class="dropdown__item">
                   <div class="nav__link">
@@ -61,31 +61,8 @@
                   </ul>
                </li>
 
-               <li class="dropdown__item">
-                  <div class="nav__link">
-                     Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                  </div>
+               <li><a href="publish_lowongan_baru.php" class="nav__link">Publish Lowongan</a></li>
 
-                  <ul class="dropdown__menu">
-                     <li>
-                        <a href="#" class="dropdown__link">
-                           <i class="ri-user-line"></i> Postingan Saya
-                        </a>
-                     </li>
-
-                     <li>
-                        <a href="publish_lowongan_baru.php" class="dropdown__link">
-                           <i class="ri-lock-line"></i> Tambah Unggahan
-                        </a>
-                     </li>
-
-                     <li>
-                        <a href="#" class="dropdown__link">
-                           <i class="ri-message-3-line"></i> Riwayat
-                        </a>
-                     </li>
-                  </ul>
-               </li>
                <li class="dropdown__item">
                   <div class="nav__link">
                      Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -112,33 +89,9 @@
                   </ul>
                </li>
 
-               <li class="dropdown__item">
-                  <div class="nav__link">
-                     Charity <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-                  </div>
+               <li><a href="charity.php" class="nav__link">Charity</a></li>
 
-                  <ul class="dropdown__menu">
-                     <li>
-                        <a href="#" class="dropdown__link">
-                           <i class="ri-user-line"></i> Berbagi
-                        </a>
-                     </li>
-
-                     <li>
-                        <a href="#" class="dropdown__link">
-                           <i class="ri-lock-line"></i> Riwayat
-                        </a>
-                     </li>
-
-                     <li>
-                        <a href="#" class="dropdown__link">
-                           <i class="ri-message-3-line"></i> Messages
-                        </a>
-                     </li>
-                  </ul>
-               </li>
-
-               <li><a href="#" class="nav__link">Profile</a></li>
+               <li><a href="profile.php" class="nav__link">Profile</a></li>
             </ul>
          </div>
       </nav>
@@ -362,7 +315,7 @@
    }
 
    @media screen and (max-width: 1118px) {
-      
+
       .nav__menu {
          position: absolute;
          left: 0;

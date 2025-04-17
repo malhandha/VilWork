@@ -10,7 +10,7 @@ if ($conn->connect_error) {
   die("Koneksi gagal: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM pelatihan";
+$query = "SELECT * FROM lowongan";
 $result = $conn->query($query);
 ?>
 
@@ -33,7 +33,7 @@ $result = $conn->query($query);
   <header class="header">
     <nav class="nav container">
       <div class="nav__data">
-        <a href="dashboard.php" class="nav__logo">
+        <a href="#" class="nav__logo">
           VillWork
         </a>
 
@@ -45,7 +45,7 @@ $result = $conn->query($query);
 
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
-          <li><a href="dashboard.php" class="nav__link">Home</a></li>
+          <li><a href="#" class="nav__link">Home</a></li>
 
           <li class="dropdown__item">
             <div class="nav__link">
@@ -67,8 +67,31 @@ $result = $conn->query($query);
             </ul>
           </li>
 
-          <li><a href="publish_lowongan_baru.php" class="nav__link">Publish Lowongan</a></li>
+          <li class="dropdown__item">
+            <div class="nav__link">
+              Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+            </div>
 
+            <ul class="dropdown__menu">
+              <li>
+                <a href="#" class="dropdown__link">
+                  <i class="ri-user-line"></i> Postingan Saya
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="dropdown__link">
+                  <i class="ri-lock-line"></i> Tambah Unggahan
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="dropdown__link">
+                  <i class="ri-message-3-line"></i> Riwayat
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="dropdown__item">
             <div class="nav__link">
               Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -95,9 +118,33 @@ $result = $conn->query($query);
             </ul>
           </li>
 
-          <li><a href="charity.php" class="nav__link">Charity</a></li>
+          <li class="dropdown__item">
+            <div class="nav__link">
+              Charity <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+            </div>
 
-          <li><a href="profile.php" class="nav__link">Profile</a></li>
+            <ul class="dropdown__menu">
+              <li>
+                <a href="#" class="dropdown__link">
+                  <i class="ri-user-line"></i> Berbagi
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="dropdown__link">
+                  <i class="ri-lock-line"></i> Riwayat
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="dropdown__link">
+                  <i class="ri-message-3-line"></i> Messages
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="#" class="nav__link">Profile</a></li>
         </ul>
       </div>
     </nav>
@@ -108,12 +155,13 @@ $result = $conn->query($query);
     <table class="w-full border-collapse border border-gray-300">
       <thead>
         <tr class="bg-[#141E43] text-white">
-          <th class="border border-gray-300 px-4 py-2">ID</th>
-          <th class="border border-gray-300 px-4 py-2">Nama</th>
-          <th class="border border-gray-300 px-4 py-2">Pelatihan</th>
-          <th class="border border-gray-300 px-4 py-2">No. Telepon</th>
-          <th class="border border-gray-300 px-4 py-2">Email</th>
-          <th class="border border-gray-300 px-4 py-2">Tanggal</th>
+          <th class="border border-gray-300 px-4 py-2">ID Perusahaan</th>
+          <th class="border border-gray-300 px-4 py-2">Judul Pekerjaan</th>
+          <th class="border border-gray-300 px-4 py-2">Deskripsi</th>
+          <th class="border border-gray-300 px-4 py-2">Lokasi</th>
+          <th class="border border-gray-300 px-4 py-2">Gaji min</th>
+          <th class="border border-gray-300 px-4 py-2">Gaji Max</th>
+          <th class="border border-gray-300 px-4 py-2">Tanggal Berakhir</th>
           <th class="border border-gray-300 px-4 py-2">Aksi</th>
         </tr>
       </thead>
@@ -122,12 +170,13 @@ $result = $conn->query($query);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             echo "<tr class='bg-gray-100 text-center'>";
-            echo "<td class='border px-4 py-2'>" . $row["id_pelatihan"] . "</td>";
-            echo "<td class='border px-4 py-2'>" . $row["nama"] . "</td>";
-            echo "<td class='border px-4 py-2'>" . $row["nama_pelatihan"] . "</td>";
-            echo "<td class='border px-4 py-2'>" . $row["no_tlp"] . "</td>";
-            echo "<td class='border px-4 py-2'>" . $row["email"] . "</td>";
-            echo "<td class='border px-4 py-2'>" . $row["tanggal"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["id_perusahaan"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["judul_pekerjaan"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["deskripsi"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["lokasi"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["gaji_min"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["gaji_max"] . "</td>";
+            echo "<td class='border px-4 py-2'>" . $row["tanggal_berakhir"] . "</td>";
             echo "<td class='border px-4 py-2'>
                                 <a href='edit_pelatihan.php?id_pelatihan=" . $row["id_pelatihan"] . "' class='bg-green-500 text-white px-3 py-1 rounded'>Edit</a>
                                 <a href='hapus_pelatihan.php?id_pelatihan=" . $row["id_pelatihan"] . "' class='bg-red-500 text-white px-3 py-1 rounded' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>

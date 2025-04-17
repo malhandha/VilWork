@@ -61,7 +61,7 @@ $conn->close();
   <header class="header">
     <nav class="nav container">
       <div class="nav__data">
-        <a href="#" class="nav__logo">
+        <a href="dashboard.php" class="nav__logo">
           VillWork
         </a>
 
@@ -73,7 +73,7 @@ $conn->close();
 
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
-          <li><a href="#" class="nav__link">Home</a></li>
+          <li><a href="dashboard.php" class="nav__link">Home</a></li>
 
           <li class="dropdown__item">
             <div class="nav__link">
@@ -95,31 +95,8 @@ $conn->close();
             </ul>
           </li>
 
-          <li class="dropdown__item">
-            <div class="nav__link">
-              Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-            </div>
+          <li><a href="publish_lowongan_baru.php" class="nav__link">Publish Lowongan</a></li>
 
-            <ul class="dropdown__menu">
-              <li>
-                <a href="#" class="dropdown__link">
-                  <i class="ri-user-line"></i> Postingan Saya
-                </a>
-              </li>
-
-              <li>
-                <a href="publish_lowongan_baru.php" class="dropdown__link">
-                  <i class="ri-lock-line"></i> Tambah Unggahan
-                </a>
-              </li>
-
-              <li>
-                <a href="#" class="dropdown__link">
-                  <i class="ri-message-3-line"></i> Riwayat
-                </a>
-              </li>
-            </ul>
-          </li>
           <li class="dropdown__item">
             <div class="nav__link">
               Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -146,33 +123,9 @@ $conn->close();
             </ul>
           </li>
 
-          <li class="dropdown__item">
-            <div class="nav__link">
-              Charity <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-            </div>
+          <li><a href="charity.php" class="nav__link">Charity</a></li>
 
-            <ul class="dropdown__menu">
-              <li>
-                <a href="#" class="dropdown__link">
-                  <i class="ri-user-line"></i> Berbagi
-                </a>
-              </li>
-
-              <li>
-                <a href="#" class="dropdown__link">
-                  <i class="ri-lock-line"></i> Riwayat
-                </a>
-              </li>
-
-              <li>
-                <a href="#" class="dropdown__link">
-                  <i class="ri-message-3-line"></i> Messages
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li><a href="#" class="nav__link">Profile</a></li>
+          <li><a href="profile.php" class="nav__link">Profile</a></li>
         </ul>
       </div>
     </nav>
@@ -519,84 +472,83 @@ $conn->close();
     </form>
   </div>
   <style>
-.form-container {
-  max-width: 500px;
-  margin: 150px auto; 
-  position: fixed;
-  padding: 30px 60px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  font-family: 'poppins', sans-serif;
-}
+    .form-container {
+      max-width: 500px;
+      margin: 150px auto;
+      position: fixed;
+      padding: 30px 60px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      font-family: 'poppins', sans-serif;
+    }
 
-.form-title {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-}
+    .form-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
 
-.form-content {
-  display: flex;
-  flex-direction: column;
-}
+    .form-content {
+      display: flex;
+      flex-direction: column;
+    }
 
-.form-group {
-  margin-bottom: 10px;
-}
+    .form-group {
+      margin-bottom: 10px;
+    }
 
-.form-label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #555;
-}
+    .form-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+    }
 
 
-.form-input {
-  width: 100%;
-  padding: 10px 14px;
-  font-size: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
 
-.form-input:focus {
-  border-color: #141E43;
-  box-shadow: 0 0 5px rgba(20, 30, 67, 0.3);
-  outline: none;
-}
+    .form-input:focus {
+      border-color: #141E43;
+      box-shadow: 0 0 5px rgba(20, 30, 67, 0.3);
+      outline: none;
+    }
 
-.submit-btn {
-  margin-top: 15px;
-  background-color: #141E43;
-  color: white;
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    .submit-btn {
+      margin-top: 15px;
+      background-color: #141E43;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.submit-btn:hover {
-  background-color: #0f1732;
-}
+    .submit-btn:hover {
+      background-color: #0f1732;
+    }
 
-@media (max-width: 576px) {
-  .form-container {
-    padding: 20px 15px;
-  }
+    @media (max-width: 576px) {
+      .form-container {
+        padding: 20px 15px;
+      }
 
-  .form-title {
-    font-size: 20px;
-  }
-}
-
+      .form-title {
+        font-size: 20px;
+      }
+    }
   </style>
 </body>
 
