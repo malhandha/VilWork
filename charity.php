@@ -186,6 +186,7 @@ while ($row = $chartResult->fetch_assoc()) {
         </div>
     </div>
 
+    
 
     <style>
         :root {
