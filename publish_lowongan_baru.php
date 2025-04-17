@@ -34,7 +34,7 @@ $result = $conn->query($query);
 
 <head>
     <meta charset="UTF-8">
-    <title>Donasi Charity | VillWork</title>
+    <title>Publish Lowongan</title>
     <link rel="icon" type="image/png" href="foto/logo_baru.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -132,7 +132,7 @@ $result = $conn->query($query);
                 <option value="E-Wallet">E-Wallet</option>
                 <option value="Virtual Account">Virtual Account</option>
             </select> -->
-            <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded col-span-1 md:col-span-2">
+            <button type="submit" class="bg-[#141e43] text-white px-4 py-2 rounded col-span-1 md:col-span-2">
                 Publish Lowongan
             </button>
         </form>
