@@ -34,20 +34,23 @@ $result = $conn->query($query);
 
 <head>
     <meta charset="UTF-8">
-    <title>Publish Lowongan</title>
+    <title>Publish Lowongan | VillWork</title>
     <link rel="icon" type="image/png" href="foto/logo_baru.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body class="bg-gray-100 min-h-screen">
+
     <header class="header">
         <nav class="nav container">
             <div class="nav__data">
                 <a href="dashboard.php" class="nav__logo">
-                    VillWork
+                    <img src="foto/logo_baru.png" alt="" class="logo" height="22px" width="22px">
+                    <p>VillWork</p>
                 </a>
-
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="ri-menu-line nav__burger"></i>
                     <i class="ri-close-line nav__close"></i>
@@ -56,7 +59,7 @@ $result = $conn->query($query);
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li><a href="dashboard.php" class="nav__link">Home</a></li>
+                    <li><a href="#" class="nav__link">Home</a></li>
 
                     <li class="dropdown__item">
                         <div class="nav__link">
@@ -66,7 +69,8 @@ $result = $conn->query($query);
                         <ul class="dropdown__menu">
                             <li>
                                 <a href="#" class="dropdown__link">
-                                    <i class="ri-pie-chart-line"></i> Pekerjaan Terdekat
+                                    <i class="ri-pie-chart-line"></i>
+                                    Pekerjaan Terdekat
                                 </a>
                             </li>
 
@@ -78,8 +82,31 @@ $result = $conn->query($query);
                         </ul>
                     </li>
 
-                    <li><a href="publish_lowongan_baru.php" class="nav__link">Publish Lowongan</a></li>
+                    <li class="dropdown__item">
+                        <div class="nav__link">
+                            Unggah Pekerjaan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
 
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-user-line"></i> Postingan Saya
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-lock-line"></i> Tambah Unggahan
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-message-3-line"></i> Riwayat
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="dropdown__item">
                         <div class="nav__link">
                             Pelatihan <i class="ri-arrow-down-s-line dropdown__arrow"></i>
@@ -105,9 +132,8 @@ $result = $conn->query($query);
                             </li>
                         </ul>
                     </li>
-
                     <li><a href="charity.php" class="nav__link">Charity</a></li>
-
+                    </li>
                     <li><a href="profile.php" class="nav__link">Profile</a></li>
                 </ul>
             </div>
@@ -132,12 +158,12 @@ $result = $conn->query($query);
                 <option value="E-Wallet">E-Wallet</option>
                 <option value="Virtual Account">Virtual Account</option>
             </select> -->
-            <button type="submit" class="bg-[#141e43] text-white px-4 py-2 rounded col-span-1 md:col-span-2">
+            <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded col-span-1 md:col-span-2">
                 Publish Lowongan
             </button>
         </form>
 
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Riwayat Upload Pekerjaan</h2>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Data Lowongan</h2>
 
         <?php
         $query = "SELECT * FROM lowongan ORDER BY tanggal_berakhir DESC";
@@ -175,12 +201,25 @@ $result = $conn->query($query);
         <?php else: ?>
             <div class="text-gray-600">Belum ada data donasi.</div>
         <?php endif; ?> -->
+
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Grafik Lowongan per Tanggal</h2>
+        <div class="bg-white p-6 rounded-lg shadow mb-10">
+            <canvas id="lowonganChart" height="100"></canvas>
+        </div>
+
+        <div class="text-center mb-4">
+            <a href="export_lowongan.php" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
+                Download Laporan CSV
+            </a>
+        </div>
+
+
     </main>
 
-    <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
+    <!-- <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
             <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl">&times;</button>
-            <h3 class="text-xl font-bold mb-4">Detail Donasi</h3>
+            <h3 class="text-xl font-bold mb-4">Detail Lowongan</h3>
             <p><strong>Nama:</strong> <span id="modalNama"></span></p>
             <p><strong>Email:</strong> <span id="modalEmail"></span></p>
             <p><strong>Telepon:</strong> <span id="modalTelepon"></span></p>
@@ -207,7 +246,71 @@ $result = $conn->query($query);
             document.getElementById("detailModal").classList.add("hidden");
             document.getElementById("detailModal").classList.remove("flex");
         }
+    </script> -->
+    <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
+            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl">&times;</button>
+            <h3 class="text-xl font-bold mb-4">Detail Lowongan</h3>
+            <p><strong>Perusahaan:</strong> <span id="modalPerusahaan"></span></p>
+            <p><strong>Judul Pekerjaan:</strong> <span id="modalJudul"></span></p>
+            <p><strong>Deskripsi:</strong> <span id="modalDeskripsi"></span></p>
+            <p><strong>Lokasi:</strong> <span id="modalLokasi"></span></p>
+            <p><strong>Gaji:</strong> Rp<span id="modalGaji"></span></p>
+            <p><strong>Tanggal Berakhir:</strong> <span id="modalTanggal"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function showDetail(data) {
+            document.getElementById("modalPerusahaan").innerText = data.id_perusahaan;
+            document.getElementById("modalJudul").innerText = data.judul_pekerjaan;
+            document.getElementById("modalDeskripsi").innerText = data.deskripsi;
+            document.getElementById("modalLokasi").innerText = data.lokasi;
+            document.getElementById("modalGaji").innerText =
+                $ {
+                    parseFloat(data.gaji_min).toLocaleString('id-ID')
+                } - $ {
+                    parseFloat(data.gaji_max).toLocaleString('id-ID')
+                };
+            document.getElementById("modalTanggal").innerText = new Date(data.tanggal_berakhir).toLocaleDateString('id-ID');
+
+            document.getElementById("detailModal").classList.remove("hidden");
+            document.getElementById("detailModal").classList.add("flex");
+        }
+
+        function closeModal() {
+            document.getElementById("detailModal").classList.add("hidden");
+            document.getElementById("detailModal").classList.remove("flex");
+        }
+
+
+        const ctx = document.getElementById('lowonganChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($labels); ?>,
+                datasets: [{
+                    label: 'Gaji Maksimum (Rp)',
+                    data: <?= json_encode($dataGaji); ?>,
+                    backgroundColor: '#1e3a8a'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rp ' + value.toLocaleString('id-ID');
+                            }
+                        }
+                    }
+                }
+            }
+        });
     </script>
+
 
 </body>
 
@@ -244,12 +347,13 @@ $result = $conn->query($query);
 
     body {
         margin: 0;
+        padding-top: 80px;
         background: var(--body-color);
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
-        overflow: auto;
+        overflow-y: auto;
         font-family: var(--body-font);
         font-size: var(--normal-font-size);
     }
@@ -423,13 +527,13 @@ $result = $conn->query($query);
         transition: max-height 0.4s ease-out;
     }
 
-    .dropdown__item:hover .dropdown__menu,
-    .dropdown__subitem:hover>.dropdown__submenu {
+    .dropdown_item:hover .dropdown_menu,
+    .dropdown_subitem:hover>.dropdown_submenu {
         max-height: 1000px;
         transition: max-height 0.4s ease-in;
     }
 
-    .dropdown__item:hover .dropdown__arrow {
+    .dropdown_item:hover .dropdown_arrow {
         transform: rotate(180deg);
     }
 
@@ -505,7 +609,7 @@ $result = $conn->query($query);
             padding-inline: 1rem 3.5rem;
         }
 
-        .dropdown__subitem .dropdown__link {
+        .dropdown_subitem .dropdown_link {
             padding-inline: 1rem;
         }
 
@@ -515,7 +619,7 @@ $result = $conn->query($query);
             top: 0.5rem;
         }
 
-        .dropdown__item:hover .dropdown__menu {
+        .dropdown_item:hover .dropdown_menu {
             opacity: 1;
             top: 5.5rem;
             pointer-events: initial;
